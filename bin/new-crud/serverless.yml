@@ -1,0 +1,78 @@
+frameworkVersion: "1.x"
+
+service: ${file(../shared/config.yml):appPrefix}-SLS_HQ_NAME
+
+provider:
+  name: aws
+  runtime: ${file(../shared/config.yml):awsRuntime}
+  stage: ${file(../shared/config.yml):awsStage}
+  region: ${file(../shared/config.yml):awsRegion}
+  profile: ${file(../shared/config.yml):awsProfile}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:awsdynamodb:${file(../shared/config.yml):awsRegion}:*:*"
+
+resources:
+  Resources:
+    UserDynamoDBTable:
+      Type: AWS::DynamoDB::Table
+      DeletionPolicy: Retain
+      Properties:
+        TableName: ${file(../shared/config.yml):appPrefix}-SLS_HQ_NAME
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+functions:
+  create:
+    handler: handler.create
+    events:
+      - http:
+          path: SLS_HQ_PATH
+          method: post
+          cors: true
+  readAll:
+    handler: handler.readAll
+    events:
+      - http:
+          path: SLS_HQ_PATH
+          method: get
+          cors: true
+  read:
+    handler: handler.read
+    events:
+      - http:
+          path: SLS_HQ_PATH/{id}
+          method: get
+          cors: true
+  update:
+    handler: handler.update
+    events:
+      - http:
+          path: SLS_HQ_PATH/{id}
+          method: put
+          cors: true
+  delete:
+    handler: handler.delete
+    events:
+      - http:
+          path: SLS_HQ_PATH/{id}
+          method: delete
+          cors: true
+
+plugins:
+  - serverless-offline

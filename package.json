@@ -6,6 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "sls-hq": "bin/index.js",
+    "serverless-hq": "bin/index.js",
+    "slshq": "bin/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/haseebnqureshi/serverless-hq.git"
@@ -18,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/haseebnqureshi/serverless-hq/issues"
   },
-  "homepage": "https://github.com/haseebnqureshi/serverless-hq#readme"
+  "homepage": "https://github.com/haseebnqureshi/serverless-hq#readme",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
 }

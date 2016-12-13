@@ -1,0 +1,55 @@
+frameworkVersion: "1.x"
+
+service: ${file(../config.yml):appPrefix}-SLS_HQ_NAME
+
+provider:
+  name: aws
+  runtime: ${file(../config.yml):awsRuntime}
+  stage: ${file(../config.yml):awsStage}
+  region: ${file(../config.yml):awsRegion}
+  profile: ${file(../config.yml):awsProfile}
+
+functions:
+  sync:
+    handler: handler.sync
+
+resources:
+  Resources:
+
+    StaticBucket:
+      Type: "AWS::S3::Bucket"
+      DeletionPolicy: "Retain"
+      Properties:
+        BucketName: ${file(./config.yml):staticBucketName}
+        AccessControl: "PublicRead"
+        WebsiteConfiguration:
+          IndexDocument: "index.html"
+          ErrorDocument: "index.html"
+
+    StaticBucketPolicy:
+      Type: "AWS::S3::BucketPolicy"
+      Properties:
+        Bucket: 
+          Ref: "StaticBucket"
+        PolicyDocument:
+          Statement:
+          - Sid: AddPerm
+            Effect: Allow
+            Principal: "*"
+            Action: s3:GetObject
+            Resource:
+              Fn::Join:
+              - ''
+              - - 'arn:aws:s3:::'
+                - ${file(./config.yml):staticBucketName}
+                - "/*"
+
+    RedirectStaticBucket:
+      Type: "AWS::S3::Bucket"
+      DeletionPolicy: "Retain"
+      Properties:
+        BucketName: www.${file(./config.yml):staticBucketName}
+        AccessControl: "Private"
+        WebsiteConfiguration:
+          RedirectAllRequestsTo: 
+            HostName: ${file(./config.yml):staticBucketName}

@@ -32,3 +32,18 @@ module.exports.sync = (event, context, callback) => {
 	exec(`aws s3 sync ${siteFilesPath} s3://${serviceConfig.staticBucketName} --profile=${projectConfig.awsProfile}`);
 
 };
+
+module.exports.get = (event, context, callback) => {
+
+	var indexPath = path.resolve(__dirname, 'www/index.html');
+	var response = {
+		statusCode: 200,
+		body: fs.createReadStream(indexPath),
+		headers: {
+			"Content-Type": "text/html"
+		}
+	}
+
+	return context.succeed(response);
+
+};

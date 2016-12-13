@@ -16,7 +16,9 @@ module.exports = (args) => {
 
 		if (utils.dirpathHas(dirpath, 'serverless.yml')) {
 
-			exec(`cd ${dirpath} && npm link shared && cd ${dir}`);
+			exec(`cd ${dirpath} && npm link shared && cd ${dir}`, {
+				stdio: [0,1,2]
+			});
 			
 			count++;
 

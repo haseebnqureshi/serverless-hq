@@ -16,7 +16,9 @@ module.exports = (args) => {
 
 		if (utils.dirpathHas(dirpath, 'package.json')) {
 
-			exec(`cd ${dirpath} && npm install && cd ${dir}`);
+			exec(`cd ${dirpath} && npm install && cd ${dir}`, {
+				stdio: [0,1,2]
+			});
 			
 			count++;
 

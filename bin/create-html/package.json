@@ -1,5 +1,5 @@
 {
-  "name": "new-html",
+  "name": "create-html",
   "version": "1.0.0",
   "description": "",
   "main": "handler.js",
@@ -17,5 +17,8 @@
   "license": "MIT",
   "dependencies": {
     "js-yaml": "^3.7.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^3.5.7"
   }
 }

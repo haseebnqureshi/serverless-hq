@@ -16,7 +16,9 @@ module.exports = (args) => {
 
 		if (utils.dirpathHas(dirpath, 'serverless.yml')) {
 
-			exec(`cd ${dirpath} && sls offline && cd ${dir}`);
+			exec(`cd ${dirpath} && sls offline && cd ${dir}`, {
+				stdio: [0,1,1]
+			});
 			
 			count++;
 

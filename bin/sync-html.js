@@ -19,7 +19,9 @@ module.exports = (args) => {
 
 		console.info(`* sync-html: Syncing HTML resource '${name}' with AWS...`);
 
-		exec(`cd ${__filename}/${name} && sls invoke local -f sync && cd ${__filename}`);
+		exec(`cd ${__filename}/${name} && sls invoke local -f sync && cd ${__filename}`, {
+			stdio: [0,1,2]
+		});
 
 		console.info(`* sync-html: Synced HTML resource '${name}' with AWS.`);
 

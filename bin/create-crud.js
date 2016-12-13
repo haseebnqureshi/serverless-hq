@@ -10,23 +10,25 @@ module.exports = (args) => {
 		var name = utils.safeString(args[3]);
 	}
 	else {
-		console.error('! new-crud: Please specify the name of your resource...');
+		console.error('! create-crud: Please specify the name of your resource...');
 		process.exit();
 	}
 
 	var path = args[4] ? utils.safeString(args[4]) : name;
 
-	var sourceFilepath = `${__dirname}/new-crud`;
+	var sourceFilepath = `${__dirname}/create-crud`;
 	var targetFilepath = `${process.env.PWD}/${name}`;
 
-	console.info(`* new-crud: Creating new CRUD resource '${name}'...`);
+	console.info(`* create-crud: Creating new CRUD resource '${name}'...`);
 
 	exec(`cp -r ${sourceFilepath} ${targetFilepath} && cd ${targetFilepath} && `
 		+ `sed -i '' 's:SLS_HQ_NAME:${name}:g' serverless.yml && `
 		+ `sed -i '' 's:SLS_HQ_PATH:${path}:g' serverless.yml && `
-		+ `npm install && cd ${process.env.PWD}`);
+		+ `npm install && cd ${process.env.PWD}`, {
+		stdio: [0,1,2]
+	});
 
-	console.info(`* new-crud: created new CRUD resource '${name}'`);
+	console.info(`* create-crud: created new CRUD resource '${name}'`);
 
 	require('./ensure-shared.js')(args);
 

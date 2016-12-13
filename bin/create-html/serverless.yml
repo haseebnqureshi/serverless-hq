@@ -1,17 +1,24 @@
 frameworkVersion: "1.x"
 
-service: ${file(../config.yml):appPrefix}-SLS_HQ_NAME
+service: ${file(../shared/config.yml):appPrefix}-SLS_HQ_NAME
 
 provider:
   name: aws
-  runtime: ${file(../config.yml):awsRuntime}
-  stage: ${file(../config.yml):awsStage}
-  region: ${file(../config.yml):awsRegion}
-  profile: ${file(../config.yml):awsProfile}
+  runtime: ${file(../shared/config.yml):awsRuntime}
+  stage: ${file(../shared/config.yml):awsStage}
+  region: ${file(../shared/config.yml):awsRegion}
+  profile: ${file(../shared/config.yml):awsProfile}
 
 functions:
   sync:
     handler: handler.sync
+  get:
+    handler: handler.get
+    events:
+      - http:
+          path: SLS_HQ_PATH
+          method: get
+          cors: true
 
 resources:
   Resources:
@@ -53,3 +60,6 @@ resources:
         WebsiteConfiguration:
           RedirectAllRequestsTo: 
             HostName: ${file(./config.yml):staticBucketName}
+
+plugins:
+  - serverless-offline

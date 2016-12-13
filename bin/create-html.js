@@ -26,9 +26,7 @@ module.exports = (args) => {
 		+ `sed -i '' 's:SLS_HQ_NAME:${name}:g' serverless.yml && `
 		+ `sed -i '' 's:SLS_HQ_PATH:${path}:g' serverless.yml && `
 		+ `sed -i '' 's:SLS_HQ_STATICBUCKETNAME:${staticBucketName}:g' config.yml && `
-		+ `npm install && cd ${process.env.PWD}`, {
-		stdio: [0,1,2]
-	});
+		+ `npm install && cd ${process.env.PWD}`);
 
 	console.info(`* create-html: created new HTML resource '${name}'`);
 

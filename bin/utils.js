@@ -51,9 +51,17 @@ module.exports.iterateDir = (dirpath, iteratee) => {
 
 };
 
-module.exports.safeString = (str) => {
+module.exports.safeString = (str, delimeter, toLowerCase) => {
 
-	return str.toLowerCase().replace(/[^a-z0-9\-\.]/gmi, '-')
+	if (!_.isString(delimeter)) {
+		delimeter = '-';
+	}
+
+	if (toLowerCase !== false) {
+		str = str.toLowerCase();
+	}
+
+	return str.replace(/[^a-z0-9\-\.]/gmi, delimeter);
 
 };
 

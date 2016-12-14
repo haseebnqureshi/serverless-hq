@@ -8,5 +8,5 @@ module.exports = (Config, AWS, Utils) => {
 		console.log(`Hello, ${name}!`);
 	};
 
-	return [ 'Example', Model ];
+	return Model;
 };

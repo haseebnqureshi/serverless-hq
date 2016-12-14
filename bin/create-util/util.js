@@ -8,5 +8,5 @@ module.exports = (Config) => {
 		console.log(`Hello, ${name}!`);
 	};
 
-	return [ 'Example', Util ];
+	return Util;
 };

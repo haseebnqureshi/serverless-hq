@@ -8,13 +8,15 @@ var fs = require('fs');
 
 var utils = require('./utils.js');
 
+var chalk = require('chalk');
+
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
 		return { info: `Ensure project library`, note: `for all services` };
 	}
 
-	console.info(`* ensure-shared: Ensuring shared library exists...`);
+	console.log(chalk.yellow(`* ensure-shared: Ensuring shared library exists...`));
 
 	var dirpath = path.resolve(process.env.PWD, 'shared');
 
@@ -25,7 +27,7 @@ module.exports = (args, returnInfo) => {
 		require('./create-shared.js')(args);
 	}
 
-	console.log(`* ensure-shared: Ensured shared library exists.`);
+	console.log(chalk.green(`* ensure-shared: Ensured shared library exists.`));
 
 	require('./use-shared.js')(args);
 

@@ -4,13 +4,15 @@ var exec = require('child_process').execSync;
 
 var utils = require('./utils.js');
 
+var chalk = require('chalk');
+
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
 		return { info: `Unlink project library`, note: `for all services` };
 	}
 
-	console.info(`* unlink-shared: Unlinking shared library from project Serverless services...`);
+	console.log(chalk.yellow(`* unlink-shared: Unlinking shared library from project Serverless services...`));
 
 	var count = 0;
 
@@ -28,6 +30,6 @@ module.exports = (args, returnInfo) => {
 
 	});
 
-	console.info(`* unlink-shared: Unlinked shared library from ${count} Serverless services.`);
+	console.log(chalk.green(`* unlink-shared: Unlinked shared library from ${count} Serverless services.`));
 
 };

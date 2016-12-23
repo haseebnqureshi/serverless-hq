@@ -37,6 +37,14 @@ module.exports.dirpathHas = (dirpath, needle, hard) => {
 
 };
 
+module.exports.fileContainsString = (filepath, needle) => {
+
+	var contents = fs.readFileSync(filepath, 'utf8');
+
+	return contents.match(needle);
+
+};
+
 module.exports.isDir = (filepath) => {
 
 	var stat = fs.lstatSync(filepath);

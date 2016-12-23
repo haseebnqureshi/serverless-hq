@@ -2,6 +2,8 @@
 
 var exec = require('child_process').execSync;
 
+var chalk = require('chalk');
+
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
@@ -10,9 +12,11 @@ module.exports = (args, returnInfo) => {
 
 	require('./install.js')(args);
 
+	console.log(chalk.yellow(`* create-shared: Creating shared library for all Serverless services...`));
+
 	exec(`cp -r ${__dirname}/shared ${process.env.PWD}/shared &&`
 		+ `cd ${process.env.PWD}/shared && npm link && cd ${process.env.PWD}`);
 
-	console.info(`* create-shared: Created shared library for all Serverless services...`);
+	console.log(chalk.green(`* create-shared: Created shared library for all Serverless services.`));
 
 };

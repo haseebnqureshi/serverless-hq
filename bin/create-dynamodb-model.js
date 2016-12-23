@@ -4,6 +4,8 @@ var exec = require('child_process').execSync;
 
 var utils = require('./utils.js');
 
+var chalk = require('chalk');
+
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
@@ -14,7 +16,7 @@ module.exports = (args, returnInfo) => {
 		var name = utils.safeString(args[3]);
 	}
 	else {
-		console.error('! create-dynamodb-model: Please specify the name of your resource...');
+		console.log(chalk.red('! create-dynamodb-model: Please specify the name of your resource...'));
 		process.exit();
 	}
 
@@ -23,11 +25,11 @@ module.exports = (args, returnInfo) => {
 	var sourceFilepath = `${__dirname}/create-dynamodb-model`;
 	var targetFilepath = `${process.env.PWD}/shared/Models/${name}`;
 
-	console.info(`* create-dynamodb-model: Creating new DynamoDB model resource '${name}'...`);
+	console.log(chalk.yellow(`* create-dynamodb-model: Creating new DynamoDB model resource '${name}'...`));
 
 	exec(`cp -r ${sourceFilepath} ${targetFilepath} && cd ${targetFilepath} && `
 		+ `npm install && cd ${process.env.PWD}`);
 
-	console.info(`* create-dynamodb-model: created new DynamoDB model resource '${name}'`);
+	console.log(chalk.green(`* create-dynamodb-model: Created new DynamoDB model resource '${name}'.`));
 
 };

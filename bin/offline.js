@@ -4,13 +4,15 @@ var exec = require('child_process').execSync;
 
 var utils = require('./utils.js');
 
+var chalk = require('chalk');
+
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
 		return { info: `Run offline`, note: `for all services` };
 	}
 
-	console.info(`* offline: Running all project Serverless services offline...`);
+	console.log(chalk.yellow(`* offline: Attempitng to run all project Serverless services offline...`));
 
 	var count = 0;
 
@@ -30,6 +32,6 @@ module.exports = (args, returnInfo) => {
 
 	});
 
-	console.log(`* offline: Running ${count} Serverless services offline.`);
+	console.log(chalk.green(`* offline: Running ${count} Serverless services offline.`));
 
 };

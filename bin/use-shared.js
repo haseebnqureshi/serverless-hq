@@ -4,13 +4,15 @@ var exec = require('child_process').execSync;
 
 var utils = require('./utils.js');
 
+var chalk = require('chalk');
+
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
 		return { info: `Relink project library`, note: `for all services` };
 	}
 
-	console.info(`* use-shared: Ensuring access to shared library by all Serverless services...`);
+	console.log(chalk.yellow(`* use-shared: Ensuring access to shared library by all Serverless services...`));
 
 	var count = 0;
 
@@ -28,6 +30,6 @@ module.exports = (args, returnInfo) => {
 
 	});
 
-	console.log(`* use-shared: Ensured access to shared library by ${count} Serverless services.`);
+	console.log(chalk.green(`* use-shared: Ensured access to shared library by ${count} Serverless services.`));
 
 };

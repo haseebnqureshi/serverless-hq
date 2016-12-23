@@ -4,13 +4,15 @@ var exec = require('child_process').execSync;
 
 var utils = require('./utils.js');
 
+var chalk = require('chalk');
+
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
 		return { info: `Recursively npm install`, note: `` };
 	}
 
-	console.info(`* install: Installing NPM scripts for all project top-level directories...`);
+	console.log(chalk.yellow(`* install: Installing NPM scripts for all project top-level directories...`));
 
 	var count = 0;
 
@@ -28,6 +30,6 @@ module.exports = (args, returnInfo) => {
 
 	});
 
-	console.info(`* install: Installed NPM scripts for ${count} top-level directories.`);
+	console.log(chalk.green(`* install: Installed NPM scripts for ${count} top-level directories.`));
 
 };

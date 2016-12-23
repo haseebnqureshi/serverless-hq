@@ -10,4 +10,6 @@ Serverless HQ gets us a slightly opinionated abstraction layer for your Node app
 And we've shoved all of this into an easy-to-manage NPM package. So as SLS improves, we can manage our versions appropriately - without altering your code. (Yay versioning!)
 
 ### Getting Started
-```npm install serverless-hq --save``` and then run ```sls-hq help`` to get a full list of commands. That's it!
+1. ```npm install serverless-hq --save```
+2. ```sls-hq help```
+3. Pick your comamnd and go build

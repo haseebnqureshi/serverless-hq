@@ -23,9 +23,10 @@ module.exports = (args, returnInfo) => {
 	require('./ensure-shared.js')(args);
 
 	var sourceFilepath = `${__dirname}/create-blank-util`;
+	
 	var targetFilepath = `${process.env.PWD}/shared/Utils/${name}`;
 
-	console.log(chalk.yellow(`* create-blank-util: Creating new util resource '${name}'...`);
+	console.log(chalk.yellow(`* create-blank-util: Creating new util resource '${name}'...`));
 
 	exec(`cp -r ${sourceFilepath} ${targetFilepath} && cd ${targetFilepath} && `
 		+ `npm install && cd ${process.env.PWD}`);

@@ -15,5 +15,5 @@ And we've shoved all of this into an easy-to-manage NPM package. So as SLS impro
 ### Getting Started
 1. ```npm install serverless-hq --save```
 2. ```sls-hq help```
-3. Pick your comamnd and go build
+3. Pick your command and go build
 

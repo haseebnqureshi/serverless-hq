@@ -86,7 +86,8 @@ Serverless services, together forming your application.`)
 this.printHeader = () => {
 	console.log(`\n` + chalk.yellow.underline(`SERVERLESS HQ`)
 		+ `\n` + chalk.yellow(`Serverless made quick & easy.`)
-		+ `\n` + chalk.gray(`This is your home base for quick & powerfully easy scaffolding for your next Serverless project.`)
+		+ `\n` + chalk.white(`This is your home base for quick & powerfully easy scaffolding 
+for your next Serverless project.`)
 		+ `\n`
 		+ `\n` + chalk.yellow.underline(`0.1.0 Commands`)
 		+ `\n` + chalk.gray(`* You can run commands with "serverless-hq" or the shortcuts "sls-hq" or "slshq"`)

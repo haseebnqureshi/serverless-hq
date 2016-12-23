@@ -4,10 +4,10 @@ var exec = require('child_process').execSync;
 
 var utils = require('./utils.js');
 
-module.exports = (args, returnDescription) => {
+module.exports = (args, returnInfo) => {
 
-	if (returnDescription) {
-		return 'Create your new Serverless service nodejs template';
+	if (returnInfo) {
+		return { info: `Recursively npm install`, note: `` };
 	}
 
 	console.info(`* install: Installing NPM scripts for all project top-level directories...`);

@@ -2,10 +2,10 @@
 
 var exec = require('child_process').execSync;
 
-module.exports = (args, returnDescription) => {
+module.exports = (args, returnInfo) => {
 
-	if (returnDescription) {
-		return 'Create your new Serverless service nodejs template';
+	if (returnInfo) {
+		return { info: `Create blank serverless nodejs template`, note: `` };
 	}
 
 	var path = args[3];

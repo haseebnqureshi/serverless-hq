@@ -4,10 +4,10 @@ var exec = require('child_process').execSync;
 
 var utils = require('./utils.js');
 
-module.exports = (args, returnDescription) => {
+module.exports = (args, returnInfo) => {
 
-	if (returnDescription) {
-		return 'Create your new Serverless service nodejs template';
+	if (returnInfo) {
+		return { info: `Display info`, note: `for all services` };
 	}
 
 	console.info(`* info: Displaying info on all project Serverless services...`);

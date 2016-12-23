@@ -4,10 +4,10 @@ var exec = require('child_process').execSync;
 
 var utils = require('./utils.js');
 
-module.exports = (args, returnDescription) => {
+module.exports = (args, returnInfo) => {
 
-	if (returnDescription) {
-		return 'Create your new Serverless service nodejs template';
+	if (returnInfo) {
+		return { info: `Remove from aws`, note: `for all services` };
 	}
 
 	console.info(`* remove: Removing all project Serverless services from AWS...`);

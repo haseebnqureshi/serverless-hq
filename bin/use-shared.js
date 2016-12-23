@@ -4,10 +4,10 @@ var exec = require('child_process').execSync;
 
 var utils = require('./utils.js');
 
-module.exports = (args, returnDescription) => {
+module.exports = (args, returnInfo) => {
 
-	if (returnDescription) {
-		return 'Create your new Serverless service nodejs template';
+	if (returnInfo) {
+		return { info: `Relink project library`, note: `for all services` };
 	}
 
 	console.info(`* use-shared: Ensuring access to shared library by all Serverless services...`);

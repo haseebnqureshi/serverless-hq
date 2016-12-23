@@ -32,7 +32,9 @@ module.exports = (args, returnInfo) => {
 		+ `sed -i '' 's:SLS_HQ_NAME:${name}:g' serverless.yml && `
 		+ `sed -i '' 's:SLS_HQ_PATH:${path}:g' serverless.yml && `
 		+ `sed -i '' 's:SLS_HQ_STATICBUCKETNAME:${staticBucketName}:g' config.yml && `
-		+ `npm install && cd ${process.env.PWD}`);
+		+ `npm install && cd ${process.env.PWD}`, {
+			stdio: []
+		});
 
 	console.log(chalk.green(`* create-html: Created new HTML resource '${name}'.`));
 

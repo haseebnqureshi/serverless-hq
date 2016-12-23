@@ -28,7 +28,9 @@ module.exports = (args, returnInfo) => {
 	console.log(chalk.yellow(`* create-blank-model: Creating new model resource '${name}'...`));
 
 	exec(`cp -r ${sourceFilepath} ${targetFilepath} && cd ${targetFilepath} && `
-		+ `npm install && cd ${process.env.PWD}`);
+		+ `npm install && cd ${process.env.PWD}`, {
+			stdio: []
+		});
 
 	console.log(chalk.green(`* create-blank-model: Created new model resource '${name}'.`));
 

@@ -22,7 +22,9 @@ module.exports = (args, returnInfo) => {
 
 		if (utils.dirpathHas(dirpath, 'package.json')) {
 
-			exec(`cd ${dirpath} && npm install && cd ${dir}`);
+			exec(`cd ${dirpath} && npm install && cd ${dir}`, {
+				stdio: []
+			});
 			
 			count++;
 

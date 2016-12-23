@@ -15,7 +15,9 @@ module.exports = (args, returnInfo) => {
 	console.log(chalk.yellow(`* create-shared: Creating shared library for all Serverless services...`));
 
 	exec(`cp -r ${__dirname}/shared ${process.env.PWD}/shared &&`
-		+ `cd ${process.env.PWD}/shared && npm link && cd ${process.env.PWD}`);
+		+ `cd ${process.env.PWD}/shared && npm link && cd ${process.env.PWD}`, {
+			stdio: []
+		});
 
 	console.log(chalk.green(`* create-shared: Created shared library for all Serverless services.`));
 

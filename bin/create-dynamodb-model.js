@@ -28,7 +28,9 @@ module.exports = (args, returnInfo) => {
 	console.log(chalk.yellow(`* create-dynamodb-model: Creating new DynamoDB model resource '${name}'...`));
 
 	exec(`cp -r ${sourceFilepath} ${targetFilepath} && cd ${targetFilepath} && `
-		+ `npm install && cd ${process.env.PWD}`);
+		+ `npm install && cd ${process.env.PWD}`, {
+			stdio: []
+		});
 
 	console.log(chalk.green(`* create-dynamodb-model: Created new DynamoDB model resource '${name}'.`));
 

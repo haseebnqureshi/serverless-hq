@@ -29,7 +29,9 @@ module.exports = (args, returnInfo) => {
 	console.log(chalk.yellow(`* create-blank-util: Creating new util resource '${name}'...`));
 
 	exec(`cp -r ${sourceFilepath} ${targetFilepath} && cd ${targetFilepath} && `
-		+ `npm install && cd ${process.env.PWD}`);
+		+ `npm install && cd ${process.env.PWD}`, {
+			stdio: []
+		});
 
 	console.log(chalk.green(`* create-blank-util: Created new util resource '${name}'.`));
 

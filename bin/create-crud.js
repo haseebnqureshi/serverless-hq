@@ -30,7 +30,9 @@ module.exports = (args, returnInfo) => {
 	exec(`cp -r ${sourceFilepath} ${targetFilepath} && cd ${targetFilepath} && `
 		+ `sed -i '' 's:SLS_HQ_NAME:${name}:g' serverless.yml && `
 		+ `sed -i '' 's:SLS_HQ_PATH:${path}:g' serverless.yml && `
-		+ `npm install && cd ${process.env.PWD}`);
+		+ `npm install && cd ${process.env.PWD}`, {
+			stdio: []
+		});
 
 	console.log(chalk.green(`* create-crud: Created new CRUD resource '${name}'.`));
 

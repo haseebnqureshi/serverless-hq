@@ -11,23 +11,23 @@ module.exports = (args, returnDescription) => {
 	}
 
 	if (args[3]) {
-		var name = utils.safeString(args[3], '', false);
+		var name = utils.safeString(args[3]);
 	}
 	else {
-		console.error('! create-util: Please specify the name of your resource...');
+		console.error('! create-dynamodb-model: Please specify the name of your resource...');
 		process.exit();
 	}
 
 	require('./ensure-shared.js')(args);
 
-	var sourceFilepath = `${__dirname}/create-util`;
-	var targetFilepath = `${process.env.PWD}/shared/Utils/${name}`;
+	var sourceFilepath = `${__dirname}/create-dynamodb-model`;
+	var targetFilepath = `${process.env.PWD}/shared/Models/${name}`;
 
-	console.info(`* create-util: Creating new util resource '${name}'...`);
+	console.info(`* create-dynamodb-model: Creating new DynamoDB model resource '${name}'...`);
 
 	exec(`cp -r ${sourceFilepath} ${targetFilepath} && cd ${targetFilepath} && `
 		+ `npm install && cd ${process.env.PWD}`);
 
-	console.info(`* create-util: created new util resource '${name}'`);
+	console.info(`* create-dynamodb-model: created new DynamoDB model resource '${name}'`);
 
 };

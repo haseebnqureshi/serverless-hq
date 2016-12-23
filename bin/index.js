@@ -10,8 +10,7 @@ try {
 	fs.accessSync(filepath);
 }
 catch (err) {
-	console.error('! sls-hq: Please specify a valid command...');
-	process.exit();
+	filepath = `${__dirname}/help.js`;
 }
 
 try {

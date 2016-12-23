@@ -6,6 +6,12 @@ var path = require('path');
 
 var _ = require('underscore');
 
+module.exports.appendLineToFile = (line, filepath) => {
+
+	fs.appendFileSync(filepath, `\n${line}`, 'utf8');
+
+};
+
 module.exports.dirpathHas = (dirpath, needle, hard) => {
 
 	if (!this.isDir(dirpath)) { return false; }

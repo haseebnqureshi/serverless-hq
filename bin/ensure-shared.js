@@ -8,7 +8,11 @@ var fs = require('fs');
 
 var utils = require('./utils.js');
 
-module.exports = (args) => {
+module.exports = (args, returnDescription) => {
+
+	if (returnDescription) {
+		return 'Create your new Serverless service nodejs template';
+	}
 
 	console.info(`* ensure-shared: Ensuring shared library exists...`);
 

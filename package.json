@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/haseebnqureshi/serverless-hq#readme",
   "dependencies": {
+    "chalk": "^1.1.3",
     "underscore": "^1.8.3"
   }
 }

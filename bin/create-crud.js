@@ -4,7 +4,11 @@ var exec = require('child_process').execSync;
 
 var utils = require('./utils.js');
 
-module.exports = (args) => {
+module.exports = (args, returnDescription) => {
+
+	if (returnDescription) {
+		return 'Create your new Serverless service nodejs template';
+	}
 
 	if (args[3]) {
 		var name = utils.safeString(args[3]);
@@ -29,5 +33,16 @@ module.exports = (args) => {
 	console.info(`* create-crud: created new CRUD resource '${name}'`);
 
 	require('./ensure-shared.js')(args);
+
+
+	var dbDriver = args[5] ? utils.safeString(args[5]) : 'DynamoDB';
+
+	require(`./create-${dbDriver}-model.js`)(args);
+
+	console.info(`* create-crud: modifying config.yml with ${dbDriver} model table name...`);
+
+	utils.appendLineToFile(`${name}DynamoDbTable: ` + '${self:appPrefix}-' + name, `${process.env.PWD}/shared/config.yml`);
+
+	
 
 };

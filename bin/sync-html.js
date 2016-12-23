@@ -22,8 +22,10 @@ module.exports = (args, returnInfo) => {
 		return { info: `Update static html websites`, note: `for all resources` };
 	}
 
-	var name = args[3];
-	if (!name) {
+	if (args[3]) {
+		var name = utils.safeString(args[3]);
+	}
+	else {
 		console.log(chalk.red('! sync-html: Please specify the name of your resource...'));
 		process.exit();
 	}

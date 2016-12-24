@@ -1,9 +1,0 @@
-
-# consolidating core configurations between your services
-awsRuntime: nodejs4.3
-awsStage: test
-awsRegion: us-east-1
-awsProfile: default
-
-# and load any other variables you want :)
-appPrefix: serverless-hq

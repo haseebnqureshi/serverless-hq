@@ -64,13 +64,13 @@ this.printFooter = () => {
 	console.log(
 
 `\n` + chalk.yellow.underline(`Strategy`)
-+ `\n` + chalk.gray(`As outlined from Serverless Framework's founder Austen Collins on 
-Lambda Day 2016, you might want to use a monolithic pattern (maybe 
-with GraphQL), a nano-service pattern (one Lambda function for 
-each tightly focused purpose), or a micro-service pattern (one set 
-of a handful Lambda functions around one resource, like CRUD 
-operations).`)
-+ `\n`
+// + `\n` + chalk.gray(`As outlined from Serverless Framework's founder Austen Collins on 
+// Lambda Day 2016, you might want to use a monolithic pattern (maybe 
+// with GraphQL), a nano-service pattern (one Lambda function for 
+// each tightly focused purpose), or a micro-service pattern (one set 
+// of a handful Lambda functions around one resource, like CRUD 
+// operations).`)
+// + `\n`
 + `\n` + chalk.white(`For SERVERLESS HQ, we prefer micro-services. This npm
 package gives you super-easy commands to better manage a set of 
 Serverless services, together forming your application.`)

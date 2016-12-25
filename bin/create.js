@@ -7,7 +7,13 @@ var chalk = require('chalk');
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
-		return { info: `Create blank serverless nodejs template`, note: `` };
+		return { 
+			info: `Create blank serverless nodejs template`, 
+			note: ``,
+			args: [
+				{ name: 'name', required: true }
+			]
+		};
 	}
 
 	var path = args[3];

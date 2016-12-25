@@ -19,7 +19,13 @@ this.sync = (resourceFilepath, doneFilepath) => {
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
-		return { info: `Update static html websites`, note: `for all resources` };
+		return { 
+			info: `Update static html websites`, 
+			note: `for all resources`,
+			args: [
+				{ name: 'name | all', required: true }
+			]
+		};
 	}
 
 	if (args[3]) {

@@ -9,7 +9,11 @@ var chalk = require('chalk');
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
-		return { info: `Relink project library`, note: `for all services` };
+		return { 
+			info: `Relink project library`, 
+			note: `for all services`,
+			args: []
+		};
 	}
 
 	console.log(chalk.yellow(`* use-shared: Ensuring access to shared library by all Serverless services...`));

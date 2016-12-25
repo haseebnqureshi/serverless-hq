@@ -9,7 +9,13 @@ var chalk = require('chalk');
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
-		return { info: `Create static html website`, note: `hosted on s3` };
+		return { 
+			info: `Create static html website`, 
+			note: `hosted on s3`,
+			args: [
+				{ name: 'name', required: true }
+			]
+		};
 	}
 
 	if (args[3]) {

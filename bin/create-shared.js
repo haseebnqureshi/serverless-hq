@@ -7,7 +7,11 @@ var chalk = require('chalk');
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
-		return { info: `Create project library`, note: `for all services` };
+		return { 
+			info: `Create project library`, 
+			note: `for all services`,
+			args: []
+		};
 	}
 
 	require('./install.js')(args);

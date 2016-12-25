@@ -9,7 +9,11 @@ var chalk = require('chalk');
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
-		return { info: `Unlink project library`, note: `for all services` };
+		return { 
+			info: `Unlink project library`, 
+			note: `for all services`,
+			args: []
+		};
 	}
 
 	console.log(chalk.yellow(`* unlink-shared: Unlinking shared library from project Serverless services...`));

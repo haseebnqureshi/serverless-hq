@@ -13,7 +13,11 @@ var chalk = require('chalk');
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
-		return { info: `Ensure project library`, note: `for all services` };
+		return { 
+			info: `Ensure project library`, 
+			note: `for all services`,
+			args: []
+		};
 	}
 
 	console.log(chalk.yellow(`* ensure-shared: Ensuring shared library exists...`));

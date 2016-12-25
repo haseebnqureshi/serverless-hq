@@ -9,7 +9,11 @@ var chalk = require('chalk');
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
-		return { info: `Recursively npm install`, note: `` };
+		return { 
+			info: `Recursively npm install`, 
+			note: ``,
+			args: []
+		};
 	}
 
 	console.log(chalk.yellow(`* install: Installing NPM scripts for all project top-level directories...`));

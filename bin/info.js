@@ -9,7 +9,11 @@ var chalk = require('chalk');
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
-		return { info: `Display info`, note: `for all services` };
+		return { 
+			info: `Display info`, 
+			note: `for all services`,
+			args: []
+		};
 	}
 
 	console.log(chalk.yellow(`* info: Displaying info on all project Serverless services...`));

@@ -8,9 +8,25 @@ var _ = require('underscore');
 
 var chalk = require('chalk');
 
-this.createCommandString = (name, info, note, indentDescription) => {
-	var line = chalk.yellow(name + ' ');
-	var difference = indentDescription - line.length;
+this.createCommandString = (name, info, note, args, indentDescription) => {
+	var line = name + ' ';
+
+	var requiredArgs = _.filter(args, { required: true });
+
+	var requiredArgsStr = _.reduce(requiredArgs, function(memo, arg) {
+		return memo + `[${arg.name}] `;
+	}, '');
+
+	var optionalArgs = _.filter(args, { required: false });
+
+	var optionalArgsStr = _.reduce(optionalArgs, function(memo, arg) {
+		return memo + `[${arg.name}] `;
+	}, '');
+
+	var difference = indentDescription - line.length - requiredArgsStr.length - optionalArgsStr.length;
+
+	//now that we've calculated the line length, let's chalk our line
+	line = `${chalk.yellow(name)} ${chalk.cyan(requiredArgsStr)}${chalk.gray(optionalArgsStr)}`;
 
 	for (var i=0; i<difference; i++) {
 		line += chalk.gray('.');
@@ -54,6 +70,7 @@ this.printAvailableCommands = () => {
 			command.name,
 			command.info || ``,
 			command.note || ``,
+			command.args || [],
 			41
 		);
 		console.log(line);

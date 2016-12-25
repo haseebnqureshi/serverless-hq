@@ -9,7 +9,11 @@ var chalk = require('chalk');
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
-		return { info: `Remove from aws`, note: `for all services` };
+		return { 
+			info: `Remove from aws`, 
+			note: `for all services`,
+			args: []
+		};
 	}
 
 	console.log(chalk.yellow(`* remove: Removing all project Serverless services from AWS...`));

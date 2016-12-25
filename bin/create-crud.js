@@ -9,7 +9,14 @@ var chalk = require('chalk');
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
-		return { info: `Create crud resource`, note: `for all services` };
+		return { 
+			info: `Create crud resource`, 
+			note: `for all services`,
+			args: [
+				{ name: 'name', required: true },
+				{ name: 'http-path', required: false }
+			]
+		};
 	}
 
 	if (args[3]) {

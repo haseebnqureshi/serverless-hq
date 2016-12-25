@@ -9,7 +9,13 @@ var chalk = require('chalk');
 module.exports = (args, returnInfo) => {
 
 	if (returnInfo) {
-		return { info: `Create dynamodb model`, note: `for all services` };
+		return { 
+			info: `Create dynamodb model`, 
+			note: `for all services`,
+			args: [
+				{ name: 'name', required: true }
+			]
+		};
 	}
 
 	if (args[3]) {

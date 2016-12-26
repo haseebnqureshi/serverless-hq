@@ -11,14 +11,8 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
-        - dynamodb:DescribeTable
-        - dynamodb:Query
-        - dynamodb:Scan
-        - dynamodb:GetItem
-        - dynamodb:PutItem
-        - dynamodb:UpdateItem
-        - dynamodb:DeleteItem
-      Resource: "arn:awsdynamodb:${file(SLS_HQ_SHARED_APP/config.yml):awsRegion}:*:*"
+        - dynamodb:*
+      Resource: arn:aws:dynamodb:*:*:*
 
 resources:
   Resources:

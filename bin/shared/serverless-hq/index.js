@@ -68,7 +68,9 @@ config loading script, AWS switching between offline and online
 usage, and a set of utility methods.
 */
 
-var Config = require('./config.js')(appDir);
+var sharedAppDir = path.resolve(__dirname, '..', appDirname);
+
+var Config = require('./config.js')(sharedAppDir);
 
 var AWS = require('./aws.js')(Config);
 

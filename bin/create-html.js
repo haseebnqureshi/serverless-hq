@@ -6,6 +6,8 @@ var fs = require('fs');
 
 var utils = require('./utils.js');
 
+var shared = require('./shared');
+
 var chalk = require('chalk');
 
 module.exports = (args, returnInfo) => {
@@ -45,6 +47,8 @@ module.exports = (args, returnInfo) => {
 		}
 	}
 
+	var sharedAppDir = `node_modules/${shared.dirname}/${shared.appDirname}`;
+
 	var sourceFilepath = `${__dirname}/create-html`;
 	var targetFilepath = `${process.env.PWD}/${name}`;
 
@@ -54,6 +58,7 @@ module.exports = (args, returnInfo) => {
 		+ `cp ${whichServerless} serverless.yml && `
 		+ `rm serverless-*.yml && `
 		+ `sed -i '' 's:SLS_HQ_NAME:${name}:g' serverless.yml && `
+		+ `sed -i '' 's:SLS_HQ_SHARED_APP:${sharedAppDir}:g' serverless.yml && `
 		+ `sed -i '' 's:SLS_HQ_STATICBUCKETNAME:${staticBucketName}:g' config.yml && `
 		+ `npm install && cd ${process.env.PWD}`, {
 			stdio: []

@@ -33,6 +33,8 @@ module.exports = (args, returnInfo) => {
 
 	var httpPath = args[4] ? utils.safeString(args[4]) : name;
 
+	var sharedAppDir = `node_modules/${shared.dirname}/${shared.appDirname}`;
+
 	var sourceFilepath = `${__dirname}/create-crud`;
 	var targetFilepath = `${process.env.PWD}/${name}`;
 
@@ -40,6 +42,7 @@ module.exports = (args, returnInfo) => {
 
 	exec(`cp -r ${sourceFilepath} ${targetFilepath} && cd ${targetFilepath} && `
 		+ `sed -i '' 's:SLS_HQ_NAME:${name}:g' serverless.yml && `
+		+ `sed -i '' 's:SLS_HQ_SHARED_APP:${sharedAppDir}:g' serverless.yml && `
 		+ `sed -i '' 's:SLS_HQ_PATH:${httpPath}:g' serverless.yml && `
 		+ `npm install && cd ${process.env.PWD}`, {
 			stdio: []

@@ -1,13 +1,13 @@
 frameworkVersion: "1.x"
 
-service: ${file(node_modules/shared/config.yml):appPrefix}-SLS_HQ_NAME
+service: ${file(SLS_HQ_SHARED_APP/config.yml):appPrefix}-SLS_HQ_NAME
 
 provider:
   name: aws
-  runtime: ${file(node_modules/shared/config.yml):awsRuntime}
-  stage: ${file(node_modules/shared/config.yml):awsStage}
-  region: ${file(node_modules/shared/config.yml):awsRegion}
-  profile: ${file(node_modules/shared/config.yml):awsProfile}
+  runtime: ${file(SLS_HQ_SHARED_APP/config.yml):awsRuntime}
+  stage: ${file(SLS_HQ_SHARED_APP/config.yml):awsStage}
+  region: ${file(SLS_HQ_SHARED_APP/config.yml):awsRegion}
+  profile: ${file(SLS_HQ_SHARED_APP/config.yml):awsProfile}
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -18,7 +18,7 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
-      Resource: "arn:awsdynamodb:${file(node_modules/shared/config.yml):awsRegion}:*:*"
+      Resource: "arn:awsdynamodb:${file(SLS_HQ_SHARED_APP/config.yml):awsRegion}:*:*"
 
 resources:
   Resources:
@@ -26,7 +26,7 @@ resources:
       Type: AWS::DynamoDB::Table
       DeletionPolicy: Retain
       Properties:
-        TableName: ${file(node_modules/shared/config.yml):appPrefix}-SLS_HQ_NAME
+        TableName: ${file(SLS_HQ_SHARED_APP/config.yml):appPrefix}-SLS_HQ_NAME
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
@@ -73,6 +73,11 @@ functions:
           path: SLS_HQ_PATH/{id}
           method: delete
           cors: true
+
+package:
+  exclude:
+    - node_modules/**
+    - '!node_modules/shared/**'
 
 plugins:
   - serverless-offline

@@ -1,13 +1,13 @@
 frameworkVersion: "1.x"
 
-service: ${file(node_modules/shared/config.yml):appPrefix}-SLS_HQ_NAME
+service: ${file(SLS_HQ_SHARED_APP/config.yml):appPrefix}-SLS_HQ_NAME
 
 provider:
   name: aws
-  runtime: ${file(node_modules/shared/config.yml):awsRuntime}
-  stage: ${file(node_modules/shared/config.yml):awsStage}
-  region: ${file(node_modules/shared/config.yml):awsRegion}
-  profile: ${file(node_modules/shared/config.yml):awsProfile}
+  runtime: ${file(SLS_HQ_SHARED_APP/config.yml):awsRuntime}
+  stage: ${file(SLS_HQ_SHARED_APP/config.yml):awsStage}
+  region: ${file(SLS_HQ_SHARED_APP/config.yml):awsRegion}
+  profile: ${file(SLS_HQ_SHARED_APP/config.yml):awsProfile}
 
 functions:
   sync:
@@ -50,6 +50,11 @@ resources:
               - - 'arn:aws:s3:::'
                 - ${file(./config.yml):staticBucketName}
                 - "/*"
+
+package:
+  exclude:
+    - node_modules/**
+    - '!node_modules/shared/**'
 
 plugins:
   - serverless-offline

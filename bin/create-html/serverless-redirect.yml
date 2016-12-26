@@ -16,7 +16,7 @@ functions:
     handler: handler.get
     events:
       - http:
-          path: /
+          path: index
           method: get
           cors: true
 

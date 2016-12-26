@@ -48,10 +48,10 @@ this.requireModulesFromDir = (dir, argsArr, extendedObj) => {
 			
 			var module = require(filepath).apply(this, argsArr);
 			
-			var key = module[0];
+			var key = path.basename(file);
 			
-			extendedObj[key] = module[1];
-		
+			extendedObj[key] = module;
+				
 		}
 		
 		catch (err) {};

@@ -42,6 +42,7 @@ module.exports = (args, returnInfo) => {
 
 	exec(`cp -r ${sourceFilepath} ${targetFilepath} && cd ${targetFilepath} && `
 		+ `sed -i '' 's:SLS_HQ_NAME:${name}:g' serverless.yml && `
+		+ `sed -i '' 's:SLS_HQ_NAME:${name}:g' handler.js && `
 		+ `sed -i '' 's:SLS_HQ_SHARED_APP:${sharedAppDir}:g' serverless.yml && `
 		+ `sed -i '' 's:SLS_HQ_PATH:${httpPath}:g' serverless.yml && `
 		+ `npm install && cd ${process.env.PWD}`, {

@@ -26,7 +26,7 @@ module.exports = (args, returnInfo) => {
 
 		if (utils.dirpathHas(dirpath, 'serverless.yml')) {
 
-			exec(`cd ${dirpath} && sls deploy && cd ${dir}`, {
+			exec(`cd ${dirpath} && sls remove && cd ${dir}`, {
 				stdio: [0,1,2]
 			});
 			

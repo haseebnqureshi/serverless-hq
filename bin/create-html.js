@@ -2,6 +2,8 @@
 
 var exec = require('child_process').execSync;
 
+var fs = require('fs');
+
 var utils = require('./utils.js');
 
 var chalk = require('chalk');
@@ -13,7 +15,9 @@ module.exports = (args, returnInfo) => {
 			info: `Create static html website`, 
 			note: `hosted on s3`,
 			args: [
-				{ name: 'name', required: true }
+				{ name: 'name', required: true },
+				{ name: 'bucket-name', required: true },
+				{ name: 'www', required: false }
 			]
 		};
 	}
@@ -26,8 +30,20 @@ module.exports = (args, returnInfo) => {
 		process.exit();
 	}
 
-	var staticBucketName = args[4] ? utils.safeString(args[4]) : 'serverless-hq.com';
-	var path = args[5] ? utils.safeString(args[5]) : '/';
+	if (args[4]) {
+		var staticBucketName = utils.safeString(args[4]);
+	}
+	else {
+		console.log(chalk.red('! create-html: Please specify your S3 bucket name (\'domain.com\' or \'sub.domain.com\')...'));
+		process.exit();
+	}
+
+	var whichServerless = 'serverless-redirect.yml';
+	if (args[5]) {
+		if (args[5] === 'no') {
+			var whichServerless = 'serverless-noredirect.yml';
+		}
+	}
 
 	var sourceFilepath = `${__dirname}/create-html`;
 	var targetFilepath = `${process.env.PWD}/${name}`;
@@ -35,12 +51,15 @@ module.exports = (args, returnInfo) => {
 	console.log(chalk.yellow(`* create-html: Creating new HTML resource '${name}'...`));
 
 	exec(`cp -r ${sourceFilepath} ${targetFilepath} && cd ${targetFilepath} && `
+		+ `cp ${whichServerless} serverless.yml && `
+		+ `rm serverless-*.yml && `
 		+ `sed -i '' 's:SLS_HQ_NAME:${name}:g' serverless.yml && `
-		+ `sed -i '' 's:SLS_HQ_PATH:${path}:g' serverless.yml && `
 		+ `sed -i '' 's:SLS_HQ_STATICBUCKETNAME:${staticBucketName}:g' config.yml && `
 		+ `npm install && cd ${process.env.PWD}`, {
 			stdio: []
 		});
+
+	require('./ensure-shared.js')(args);
 
 	console.log(chalk.green(`* create-html: Created new HTML resource '${name}'.`));
 

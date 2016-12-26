@@ -16,7 +16,7 @@ functions:
     handler: handler.get
     events:
       - http:
-          path: SLS_HQ_PATH
+          path: /
           method: get
           cors: true
 

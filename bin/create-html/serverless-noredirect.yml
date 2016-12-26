@@ -1,0 +1,55 @@
+frameworkVersion: "1.x"
+
+service: ${file(node_modules/shared/config.yml):appPrefix}-SLS_HQ_NAME
+
+provider:
+  name: aws
+  runtime: ${file(node_modules/shared/config.yml):awsRuntime}
+  stage: ${file(node_modules/shared/config.yml):awsStage}
+  region: ${file(node_modules/shared/config.yml):awsRegion}
+  profile: ${file(node_modules/shared/config.yml):awsProfile}
+
+functions:
+  sync:
+    handler: handler.sync
+  get:
+    handler: handler.get
+    events:
+      - http:
+          path: /
+          method: get
+          cors: true
+
+resources:
+  Resources:
+
+    StaticBucket:
+      Type: "AWS::S3::Bucket"
+      DeletionPolicy: "Retain"
+      Properties:
+        BucketName: ${file(./config.yml):staticBucketName}
+        AccessControl: "PublicRead"
+        WebsiteConfiguration:
+          IndexDocument: "index.html"
+          ErrorDocument: "index.html"
+
+    StaticBucketPolicy:
+      Type: "AWS::S3::BucketPolicy"
+      Properties:
+        Bucket: 
+          Ref: "StaticBucket"
+        PolicyDocument:
+          Statement:
+          - Sid: AddPerm
+            Effect: Allow
+            Principal: "*"
+            Action: s3:GetObject
+            Resource:
+              Fn::Join:
+              - ''
+              - - 'arn:aws:s3:::'
+                - ${file(./config.yml):staticBucketName}
+                - "/*"
+
+plugins:
+  - serverless-offline

@@ -31,7 +31,6 @@ module.exports = (Config, AWS, Utils, TableName) => {
 
 	return function(event, callback) {
 
-		console.log(TableName);
 		var dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 		dynamoDb.scan({

@@ -32,7 +32,7 @@ module.exports = (args, returnInfo) => {
 				});
 			}
 			catch (err) {
-				console.log(chalk.red(`* deploy: Something went wrong with deploying service at ${dirpath}. It might be nothing, so make sure to check your Serverless logs. Moving on...`));
+				console.log(chalk.cyan(`* deploy: Something went wrong with deploying service at ${dirpath}. It might be nothing, so make sure to check your Serverless logs. Moving on...`));
 			}
 			
 			count++;

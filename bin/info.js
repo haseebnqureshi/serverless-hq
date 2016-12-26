@@ -32,7 +32,7 @@ module.exports = (args, returnInfo) => {
 				});
 			}
 			catch (err) {
-				console.log(chalk.red(`* info: Something went wrong with 'sls info' service at ${dirpath}. It might be nothing, so make sure to check your Serverless logs. Moving on...`));
+				console.log(chalk.cyan(`* info: Something went wrong with 'sls info' service at ${dirpath}. It might be nothing, so make sure to check your Serverless logs. Moving on...`));
 			}
 			
 			count++;

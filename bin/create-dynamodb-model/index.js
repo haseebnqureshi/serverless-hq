@@ -6,7 +6,7 @@ module.exports = (Config, AWS, Utils) => {
 
 	var ModelName = path.basename(__dirname);
 
-	var TableName = Config.SLS_HQ_NAMEDynamoDbTable;
+	var TableName = `${Config.appPrefix}-${Config.SLS_HQ_NAMEDynamoDbTableSuffix}`;
 
 	return {
 

@@ -50,7 +50,7 @@ module.exports = (args, returnInfo) => {
 
 	var configFilepath = path.resolve(process.env.PWD, shared.dirname, shared.appDirname, 'config.yml');
 
-	utils.appendLineToFile(`${name}DynamoDbTable: ` + '${self:appPrefix}-' + name, configFilepath);
+	utils.appendLineToFile(`${name}DynamoDbTableSuffix: ${name}`, configFilepath);
 
 	console.log(chalk.green(`* create-dynamodb-model: Modified config.yml with DynamoDB model table name.`));
 

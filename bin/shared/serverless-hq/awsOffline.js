@@ -41,12 +41,10 @@ module.exports = (Config) => {
 	});
 
 	var AWS = require('aws-sdk');
-
-	AWS.config.update({
-		region: Config.awsRegion,
-		accessKeyId: profiles[Config.awsProfile].aws_access_key_id,
-		secretAccessKey: profiles[Config.awsProfile].aws_secret_access_key
-	});
+	var region = Config.awsRegion;
+	var accessKeyId = profiles[Config.awsProfile].aws_access_key_id;
+	var secretAccessKey = profiles[Config.awsProfile].aws_secret_access_key;
+	AWS.config.update({ region, accessKeyId, secretAccessKey });
 
 	return AWS;
 

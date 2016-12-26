@@ -12,6 +12,8 @@ try {
 	fs.accessSync(filepath);
 }
 catch (err) {
+	console.log(chalk.red(`! sls-hq: Couldn't find command "${cmd}"!`));
+	console.log(chalk.red(`! sls-hq: Please refer to the valid list of commands below...`));
 	filepath = `${__dirname}/help.js`;
 }
 

@@ -1,13 +1,13 @@
 frameworkVersion: "1.x"
 
-service: ${file(../shared/config.yml):appPrefix}-SLS_HQ_NAME
+service: ${file(node_modules/shared/config.yml):appPrefix}-SLS_HQ_NAME
 
 provider:
   name: aws
-  runtime: ${file(../shared/config.yml):awsRuntime}
-  stage: ${file(../shared/config.yml):awsStage}
-  region: ${file(../shared/config.yml):awsRegion}
-  profile: ${file(../shared/config.yml):awsProfile}
+  runtime: ${file(node_modules/shared/config.yml):awsRuntime}
+  stage: ${file(node_modules/shared/config.yml):awsStage}
+  region: ${file(node_modules/shared/config.yml):awsRegion}
+  profile: ${file(node_modules/shared/config.yml):awsProfile}
 
 functions:
   sync:

@@ -61,12 +61,4 @@ module.exports = (args, returnInfo) => {
 
 	console.log(chalk.green(`* create-crud: Created database models for new CRUD resource '${name}'.`));
 
-	console.log(chalk.yellow(`* create-crud: Modifying config.yml with ${dbDriver} model table name...`));
-
-	var configFilepath = path.resolve(process.env.PWD, shared.dirname, shared.appDirname, 'config.yml');
-
-	utils.appendLineToFile(`${name}DynamoDbTable: ` + '${self:appPrefix}-' + name, configFilepath);
-
-	console.log(chalk.green(`* create-crud: Modified config.yml with ${dbDriver} model table name.`));
-
 };

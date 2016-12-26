@@ -4,6 +4,10 @@ var exec = require('child_process').execSync;
 
 var utils = require('./utils.js');
 
+var path = require('path');
+
+var shared = require('./shared');
+
 var chalk = require('chalk');
 
 module.exports = (args, returnInfo) => {
@@ -19,7 +23,7 @@ module.exports = (args, returnInfo) => {
 	}
 
 	if (args[3]) {
-		var name = utils.safeString(args[3]);
+		var name = utils.safeString(args[3], '', false);
 	}
 	else {
 		console.log(chalk.red('! create-dynamodb-model: Please specify the name of your resource...'));
@@ -28,8 +32,9 @@ module.exports = (args, returnInfo) => {
 
 	require('./ensure-shared.js')(args);
 
-	var sourceFilepath = `${__dirname}/create-dynamodb-model`;
-	var targetFilepath = `${process.env.PWD}/shared/Models/${name}`;
+	var sourceFilepath = path.resolve(__dirname, 'create-dynamodb-model');
+
+	var targetFilepath = path.resolve(process.env.PWD, shared.dirname, shared.appDirname, shared.appModelsDirname, name);
 
 	console.log(chalk.yellow(`* create-dynamodb-model: Creating new DynamoDB model resource '${name}'...`));
 

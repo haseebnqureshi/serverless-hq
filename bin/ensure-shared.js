@@ -2,11 +2,13 @@
 
 var exec = require('child_process').execSync;
 
+var shared = require('./shared');
+
+var utils = require('./utils.js');
+
 var path = require('path');
 
 var fs = require('fs');
-
-var utils = require('./utils.js');
 
 var chalk = require('chalk');
 
@@ -22,10 +24,10 @@ module.exports = (args, returnInfo) => {
 
 	console.log(chalk.yellow(`* ensure-shared: Ensuring shared library exists...`));
 
-	var dirpath = path.resolve(process.env.PWD, 'shared');
+	var targetFilepath = path.resolve(process.env.PWD, shared.dirname);
 
 	try {
-		fs.accessSync(dirpath)
+		fs.accessSync(targetFilepath)
 	}
 	catch (err) {
 		require('./create-shared.js')(args);

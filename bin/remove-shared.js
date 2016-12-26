@@ -2,6 +2,10 @@
 
 var exec = require('child_process').execSync;
 
+var path = require('path');
+
+var shared = require('./shared');
+
 var chalk = require('chalk');
 
 module.exports = (args, returnInfo) => {
@@ -18,7 +22,9 @@ module.exports = (args, returnInfo) => {
 
 	require('./unlink-shared.js')(args);
 
-	exec(`rm -r ${process.env.PWD}/shared`);
+	var targetFilepath = path.resolve(process.env.PWD, shared.dirname);
+
+	exec(`rm -r ${targetFilepath}`);
 
 	console.log(chalk.green(`* remove-shared: Removed shared library from project.`));
 

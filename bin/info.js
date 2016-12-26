@@ -26,9 +26,14 @@ module.exports = (args, returnInfo) => {
 
 		if (utils.dirpathHas(dirpath, 'serverless.yml')) {
 
-			exec(`cd ${dirpath} && sls info && cd ${dir}`, {
-				stdio: [0,1,2]
-			});
+			try {
+				exec(`cd ${dirpath} && sls info && cd ${dir}`, {
+					stdio: [0,1,2]
+				});
+			}
+			catch (err) {
+				console.log(chalk.red(`* info: Something went wrong with 'sls info' service at ${dirpath}. It might be nothing, so make sure to check your Serverless logs. Moving on...`));
+			}
 			
 			count++;
 

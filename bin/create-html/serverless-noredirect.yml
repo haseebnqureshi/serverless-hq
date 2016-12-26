@@ -55,6 +55,7 @@ package:
   exclude:
     - node_modules/**
     - '!node_modules/shared/**'
+    - node_modules/shared/node_modules/aws-sdk/**
 
 plugins:
   - serverless-offline

@@ -31,7 +31,7 @@ module.exports = (args, returnInfo) => {
 		process.exit();
 	}
 
-	var path = args[4] ? utils.safeString(args[4]) : name;
+	var httpPath = args[4] ? utils.safeString(args[4]) : name;
 
 	var sourceFilepath = `${__dirname}/create-crud`;
 	var targetFilepath = `${process.env.PWD}/${name}`;
@@ -40,7 +40,7 @@ module.exports = (args, returnInfo) => {
 
 	exec(`cp -r ${sourceFilepath} ${targetFilepath} && cd ${targetFilepath} && `
 		+ `sed -i '' 's:SLS_HQ_NAME:${name}:g' serverless.yml && `
-		+ `sed -i '' 's:SLS_HQ_PATH:${path}:g' serverless.yml && `
+		+ `sed -i '' 's:SLS_HQ_PATH:${httpPath}:g' serverless.yml && `
 		+ `npm install && cd ${process.env.PWD}`, {
 			stdio: []
 		});

@@ -4,6 +4,10 @@ var exec = require('child_process').execSync;
 
 var utils = require('./utils.js');
 
+var path = require('path');
+
+var shared = require('./shared');
+
 var chalk = require('chalk');
 
 module.exports = (args, returnInfo) => {
@@ -55,7 +59,9 @@ module.exports = (args, returnInfo) => {
 
 	console.log(chalk.yellow(`* create-crud: Modifying config.yml with ${dbDriver} model table name...`));
 
-	utils.appendLineToFile(`${name}DynamoDbTable: ` + '${self:appPrefix}-' + name, `${process.env.PWD}/shared/config.yml`);
+	var configFilepath = path.resolve(process.env.PWD, shared.dirname, shared.appDirname, 'config.yml');
+
+	utils.appendLineToFile(`${name}DynamoDbTable: ` + '${self:appPrefix}-' + name, configFilepath);
 
 	console.log(chalk.green(`* create-crud: Modified config.yml with ${dbDriver} model table name.`));
 

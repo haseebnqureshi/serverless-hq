@@ -8,16 +8,40 @@ var yaml = require('js-yaml');
 
 var path = require('path');
 
-module.exports = (sharedAppDir) => {
+this.getConfig = (dirpath, filename) => {
 
-	var filepath = path.resolve(sharedAppDir, 'config.yml');
+	var filepath = path.resolve(dirpath, filename || 'config.yml');
+
+	try {
+		fs.accessSync(filepath);
+	}
+	catch (err) {
+		return {};
+	}
 
 	var configYml = fs.readFileSync(filepath, 'utf8');
 
-	var config = yaml.safeLoad(configYml);
+	var config;
 
-	process.env = _.extend(process.env, config);
+	try {
+		config = yaml.safeLoad(configYml);
+	}
+	catch (err) {
+		return {};
+	}
 
-	return config;
+	return config; 
+
+};
+
+module.exports = (sharedAppDir) => {
+
+	var Config = this.getConfig(sharedAppDir);
+
+	Config.Local = this.getConfig(process.env.PWD);
+
+	process.env = _.extend(process.env, Config);
+
+	return Config;
 
 };

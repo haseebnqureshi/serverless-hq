@@ -34,7 +34,14 @@ module.exports = (Config, AWS, Utils, TableName) => {
 		var dynamoDb = new AWS.DynamoDB.DocumentClient();
 		var uuid = require('uuid');
 		var _ = require('underscore');
-		var item = JSON.parse(event.body);
+		var item;
+
+		try {
+			item = JSON.parse(event.body);
+		}
+		catch (err) {
+			item = event.body;
+		}
 		
 		item = _.omit(item, function(value) {
 			return value == '';

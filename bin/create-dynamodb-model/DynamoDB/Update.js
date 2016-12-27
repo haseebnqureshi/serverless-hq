@@ -33,7 +33,20 @@ module.exports = (Config, AWS, Utils, TableName) => {
 
 		var dynamoDb = new AWS.DynamoDB.DocumentClient();
 		var itemId = event.pathParameters.id;
-		var itemUpdates = JSON.parse(event.body);
+		var _ = require('underscore');
+		var itemUpdates;
+
+		try {
+			itemUpdates = JSON.parse(event.body);
+		}
+		catch (err) {
+			itemUpdates = event.body;
+		}
+
+		itemUpdates = _.omit(itemUpdates, function(value) {
+			return value == '';
+		});
+
 		itemUpdates.updated_at = new Date().getTime();
 		var attributeUpdates = Utils.AWS.toAttributeUpdates(itemUpdates);
 

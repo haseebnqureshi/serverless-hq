@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "js-yaml": "^3.7.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "aws-sdk": "^2.6.15"

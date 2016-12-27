@@ -49,18 +49,12 @@ module.exports = (args, returnInfo) => {
 			info: `Update static html websites`, 
 			note: `for all resources`,
 			args: [
-				{ name: 'name | all', required: true }
+				{ name: 'name', required: false }
 			]
 		};
 	}
 
-	if (args[3]) {
-		var name = utils.safeString(args[3]);
-	}
-	else {
-		console.log(chalk.red(`! sync-html: Please specify the name of your resource ('all' for all HTML resources)...`));
-		process.exit();
-	}
+	var name = args[3] ? utils.safeString(args[3]) : 'all';
 
 	var doneFilepath = process.env.PWD;
 

@@ -33,8 +33,13 @@ module.exports = (Config, AWS, Utils, TableName) => {
 
 		var dynamoDb = new AWS.DynamoDB.DocumentClient();
 		var uuid = require('uuid');
+		var _ = require('underscore');
 		var item = JSON.parse(event.body);
 		
+		item = _.omit(item, function(value) {
+			return value == '';
+		});
+
 		item.id = uuid.v1();
 		item.updated_at = new Date().getTime();
 

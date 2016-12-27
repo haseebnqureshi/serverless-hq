@@ -40,6 +40,7 @@ module.exports = (Config) => {
 
 			//get our default body
 			var body = { 
+				status: defaultStatusCode || 200,
 				statusCode: defaultStatusCode || 200,
 				message: message || '',
 				data: Util.keepDataAsArray(data),
@@ -48,6 +49,7 @@ module.exports = (Config) => {
 
 			//if we have an error, we automatically infer server-side 500
 			if (err) {
+				body.status = 500;
 				body.statusCode = 500;
 				body.err = err;
 				body.message = err.message;
@@ -55,6 +57,7 @@ module.exports = (Config) => {
 
 			//if no error, check if no data, then 404 not-found
 			else if (body.data.length === 0) {
+				body.status = 404;
 				body.statusCode = 404;
 			}
 

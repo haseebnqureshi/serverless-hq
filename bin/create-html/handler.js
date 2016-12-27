@@ -18,8 +18,15 @@ module.exports.sync = (event, context, callback) => {
 
 };
 
-module.exports.get = (event, context, callback) => {
+/*
+If you comment the following, and also uncomment the serverless.yml
+function get and its http event, you can then access your HTML 
+file via lambda, without the need for S3. Really doesn't make sense
+to do in most cases, but it's nice to always see the example.
+*/
 
+/*
+module.exports.get = (event, context, callback) => {
 	var indexPath = path.resolve(siteFilesPath, 'index.html');
 	var response = {
 		statusCode: 200,
@@ -28,7 +35,6 @@ module.exports.get = (event, context, callback) => {
 			"Content-Type": "text/html"
 		}
 	}
-
 	return context.succeed(response);
-
 };
+*/

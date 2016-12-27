@@ -12,13 +12,13 @@ provider:
 functions:
   sync:
     handler: handler.sync
-  get:
-    handler: handler.get
-    events:
-      - http:
-          path: index
-          method: get
-          cors: true
+  # get:
+  #   handler: handler.get
+  #   events:
+  #     - http:
+  #         path: index
+  #         method: get
+  #         cors: true
 
 resources:
   Resources:

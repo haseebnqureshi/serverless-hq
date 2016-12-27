@@ -106,7 +106,7 @@ this.printHeader = () => {
 		+ `\n` + chalk.white(`This is your home base for quick & powerfully easy scaffolding 
 for your next Serverless project.`)
 		+ `\n`
-		+ `\n` + chalk.yellow.underline(`0.1.0 Commands`)
+		+ `\n` + chalk.yellow.underline(`0.1.x Commands`)
 		+ `\n` + chalk.gray(`* You can run commands with "serverless-hq" or the shortcuts "sls-hq" or "slshq"`)
 		+ `\n`
 	);

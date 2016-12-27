@@ -5,7 +5,7 @@
 ### Background & Why
 While Serverless Framework is fantastic, it's hard to manage several Serverless services together. Especially standardizing resources being shared between your Serverless services, so that you're not repeating yourself whenever writing code.
 
-Serverless HQ gets us a slightly opinionated abstraction layer for your Node application. Rather than obfuscating Serverless, HQ instead stiches any number of SLS services together. Serverless HQ gets you shared libraries, data modeling, and even utilities that are consistently available across your services.
+Serverless HQ gets us a slightly opinionated abstraction layer for your Node application. Rather than obfuscating Serverless, SERVERLESS HQ instead stiches any number of SLS services together. SERVERLESS HQ gets you shared libraries, data modeling, and even utilities that are consistently available across your services.
 
 And we've shoved all of this into an easy-to-manage NPM package. So as SLS improves, we can manage our versions appropriately - without altering your code. (Yay versioning!)
 
@@ -18,6 +18,42 @@ For SERVERLESS HQ, we prefer micro-services. This npm package gives you super-ea
 1. ```npm install serverless-hq --save```
 2. ```sls-hq help```
 3. Pick your command and go build. (Tutorials coming soon!)
+
+### Serverless Framework
+First, you'll want to install the Serverless Framework and follow the company's excellent guide here at this link:
+https://serverless.com/framework/docs/providers/aws/guide/installation/
+
+### AWS Credentials
+Second, you'll want to make sure your AWS credentials have been created appropriately. Again, follow the company's excellent guide here at this link:
+https://serverless.com/framework/docs/providers/aws/guide/credentials/
+
+### SERVERLESS HQ Tutorial - HTML Website/App
+Web applications do really well when you decouple what the users see and experience, from the data that powers that experience. With that infrastructure, it makes a hell of a lot of sense to put your HTML/CSS/JS experience onto Amazon's S3, especially with AWS SSL Manager. (Now, you can deliver HTTPS web experiences via AWS S3 and not pay a fortune via CloudFront!)
+
+So if you're needing to make a HTML website, or to upload your latest Angular / React,Flux / or homegrown Javascript web application, here's how in just a matter of minutes:
+
+1. Once you have the Serverless Framework installed, install SERVERLESS HQ by entering ```npm install serverless-hq``` in your project directory.
+2. Then, let's create your HTML resource. Run ```sls-hq create-html app domain.com``` in your project directory (where "domain.com" changes to the actual domain that you want to serve your files). SERVERLESS HQ will now create a ```app``` directory in your project and create the necessary scripts.
+3. Go to your newly created ```shared``` library in your project directory. Navigate to ```shared/serverless-app/config.yml```. Go ahead and modify any project variables in that file and save.
+4. Now go back up to your project directory. Run ```sls-hq deploy``` and SERVERLESS HQ will create your necessary AWS resources via Serverless Framework.
+5. Now go back to your ```app``` directory. You see the ```www``` directory? Move your HTML files and assets into that directory.
+6. Here we go. Now run ```sls-hq sync-html``` and viola! Your website and/or app is now online, perfectly scalable on AWS S3.
+
+### SERVERLESS HQ Tutorial - CRUD API
+Okay, if we really want to harness the full power of just-in-time servers with Serverless Framework, it'd be great to use DynamoDB as our data modeling. SERVERLESS HQ has your back. 
+
+Right out-of-the-box, you can quickly create basic CRUD operations around any data resource that you're looking to model. We automatically set up your API Gateway and IAM permissions with DynamoDB, so it's literally up and running in minutes. Here's how:
+
+1. Once you have the Serverless Framework installed, install SERVERLESS HQ by entering ```npm install serverless-hq``` in your project directory.
+2. Then, let's create your HTML resource. Run ```sls-hq create-crud todos``` in your project directory (where "todos" is the data resource you're looking to model). SERVERLESS HQ will now create a ```todos``` directory in your project and create the necessary scripts.
+3. Go to your newly created ```shared``` library in your project directory. Navigate to ```shared/serverless-app/config.yml```. Go ahead and modify any project variables in that file and save.
+4. Here we go. Now go back up to your project directory and run ```sls-hq deploy```. SERVERLESS HQ will create your necessary AWS resources via Serverless Framework (DynamoDB tables, the appropriate IAM policies, and everything needed from API Gateway to make a fully functioning CRUD API).
+
+### Tip: sls-hq info
+Serverless has an extremely handy command ```sls info```, which displays necessary information about your Serverless service with that short command. SERVERLESS HQ makes it incredibly easy to ```info``` your entire project. Simply go to your project directory and use ```sls-hq info```. SERVERLESS HQ will output information on all your project's Serverless services at once!
+
+### Note: SERVERLESS HQ awsProfile
+By default, SERVERLESS HQ uses your ```default``` AWS credentials. If you have multiple accounts, or have set up a different IAM user for all your Serverless functions (recommended), you can select your ```awsProfile``` in the ```shared``` directory when you create your resources with SERVERLESS HQ.
 
 ## 0.1.0 Beta (First Release)
 

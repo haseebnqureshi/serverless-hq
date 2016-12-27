@@ -2,25 +2,33 @@
 
 module.exports = (Config, AWS, Utils) => {
 
+	var DB = 'DynamoDB';
+
 	var path = require('path');
+
+	var fs = require('fs');
+
+	var _ = require('underscore');	
 
 	var ModelName = path.basename(__dirname);
 
 	var TableName = `${Config.appPrefix}-${Config.SLS_HQ_NAMEDynamoDbTableSuffix}`;
 
-	return {
+	var dirpath = path.resolve(__dirname, DB);
 
-		Create: require('./DynamoDB/Create.js')(Config, AWS, Utils, TableName),
+	var Methods = {};
 
-		Delete: require('./DynamoDB/Delete.js')(Config, AWS, Utils, TableName),
+	_.each(fs.readdirSync(dirpath), function(method) {
 
-		Read: require('./DynamoDB/Read.js')(Config, AWS, Utils, TableName),
+		var methodName = path.basename(method, '.js');
 
-		ReadAll: require('./DynamoDB/ReadAll.js')(Config, AWS, Utils, TableName),
+		try {
+			Methods[methodName] = require(`${dirpath}/${method}`)(Config, AWS, Utils, TableName);
+		}
+		catch (err) {}
 
-		Update: require('./DynamoDB/Update.js')(Config, AWS, Utils, TableName)
+	});
 
-	};
+	return Methods;
 
 };
-

@@ -38,7 +38,7 @@ module.exports = (sharedAppDir) => {
 
 	var Config = this.getConfig(sharedAppDir);
 
-	Config.Local = this.getConfig(process.env.PWD);
+	Config.Local = this.getConfig(process.env.LAMBDA_TASK_ROOT || process.env.PWD);
 
 	process.env = _.extend(process.env, Config);
 

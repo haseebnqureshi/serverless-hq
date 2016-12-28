@@ -19,7 +19,7 @@ module.exports = (args, returnInfo) => {
 			args: [
 				{ name: 'name', required: true },
 				{ name: 'bucket-name', required: true },
-				// { name: 'www', required: false }
+				{ name: 'www', required: false }
 			]
 		};
 	}

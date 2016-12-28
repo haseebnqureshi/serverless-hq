@@ -24,14 +24,14 @@ module.exports = (args, returnInfo) => {
 	}
 
 	if (args[3]) {
-		var name = utils.safeString(args[3]);
+		var name = utils.safeString(args[3], '', true, true);
 	}
 	else {
 		console.log(chalk.red('! create-crud: Please specify the name of your resource...'));
 		process.exit();
 	}
 
-	var httpPath = args[4] ? utils.safeString(args[4]) : name;
+	var httpPath = args[4] ? utils.safeString(args[4], '-', true, false) : name;
 
 	var sharedAppDir = `node_modules/${shared.dirname}/${shared.appDirname}`;
 

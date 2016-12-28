@@ -11,7 +11,7 @@ module.exports = (args, returnInfo) => {
 			info: `Create blank serverless nodejs template`, 
 			note: ``,
 			args: [
-				{ name: 'name', required: true }
+				{ name: 'path', required: true }
 			]
 		};
 	}

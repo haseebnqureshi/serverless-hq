@@ -65,7 +65,7 @@ module.exports.iterateDir = (dirpath, iteratee) => {
 
 };
 
-module.exports.safeString = (str, delimeter, toLowerCase) => {
+module.exports.safeString = (str, delimeter, toLowerCase, capitalizeFirstChar) => {
 
 	if (!_.isString(delimeter)) {
 		delimeter = '-';
@@ -73,6 +73,10 @@ module.exports.safeString = (str, delimeter, toLowerCase) => {
 
 	if (toLowerCase !== false) {
 		str = str.toLowerCase();
+	}
+
+	if (capitalizeFirstChar === true) {
+		str = str.charAt(0).toUpperCase() + str.slice(1);
 	}
 
 	return str.replace(/[^a-z0-9\-\.]/gmi, delimeter);

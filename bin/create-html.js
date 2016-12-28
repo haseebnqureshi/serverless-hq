@@ -25,7 +25,7 @@ module.exports = (args, returnInfo) => {
 	}
 
 	if (args[3]) {
-		var name = utils.safeString(args[3]);
+		var name = utils.safeString(args[3], '', true, true);
 	}
 	else {
 		console.log(chalk.red('! create-html: Please specify the name of your resource...'));
@@ -33,7 +33,7 @@ module.exports = (args, returnInfo) => {
 	}
 
 	if (args[4]) {
-		var staticBucketName = utils.safeString(args[4]);
+		var staticBucketName = utils.safeString(args[4], '-', true, false);
 	}
 	else {
 		console.log(chalk.red('! create-html: Please specify your S3 bucket name (\'domain.com\' or \'sub.domain.com\')...'));

@@ -23,7 +23,7 @@ module.exports = (args, returnInfo) => {
 	}
 
 	if (args[3]) {
-		var name = utils.safeString(args[3], '', false);
+		var name = utils.safeString(args[3], '', true, true);
 	}
 	else {
 		console.log(chalk.red('! create-dynamodb-model: Please specify the name of your resource...'));

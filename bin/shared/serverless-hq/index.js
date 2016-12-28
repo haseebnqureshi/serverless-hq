@@ -38,17 +38,19 @@ var fs = require('fs');
 
 var _ = require('underscore');
 
-this.requireModulesFromDir = (dir, argsArr, extendedObj) => {
+var exec = require('child_process').execSync;
 
-	_.each(fs.readdirSync(dir), function(file) {
+this.requireModulesFromDir = (filepaths, argsArr, extendedObj) => {
 
-		var filepath = path.resolve(dir, file);
+	_.each(filepaths, function(filepath) {
 
 		try {
 			
 			var module = require(filepath).apply(this, argsArr);
+
+			var extname = path.extname(filepath);
 			
-			var key = path.basename(file);
+			var key = path.basename(filepath, extname);
 			
 			extendedObj[key] = module;
 				
@@ -94,13 +96,13 @@ while not trampling on anytihng that comes out-of-the-box with
 serverless-hq.
 */
 
-var appUtilsDir = path.resolve(__dirname, '..', appDirname, appUtilsDirname);
+var utilPaths = require(path.resolve(sharedAppDir, appUtilsDirname));
 
-var appModelsDir = path.resolve(__dirname, '..', appDirname, appModelsDirname);
+var modelPaths = require(path.resolve(sharedAppDir, appModelsDirname));
 
-Utils = this.requireModulesFromDir(appUtilsDir, [Config], Utils);
+Utils = this.requireModulesFromDir(utilPaths, [Config], Utils);
 
-Models = this.requireModulesFromDir(appModelsDir, [Config, AWS, Utils], Models);
+Models = this.requireModulesFromDir(modelPaths, [Config, AWS, Utils], Models);
 
 /*
 Finally, we take the resulting objects and return them into 

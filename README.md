@@ -55,6 +55,14 @@ Serverless has an extremely handy command ```sls info```, which displays necessa
 ### Note: SERVERLESS HQ awsProfile
 By default, SERVERLESS HQ uses your ```default``` AWS credentials. If you have multiple accounts, or have set up a different IAM user for all your Serverless functions (recommended), you can select your ```awsProfile``` in the ```shared``` directory when you create your resources with SERVERLESS HQ.
 
+## 0.1.6 Beta 
+
+Oh man, so many stability updates in this release. Fixed a lot of things that were happening in Lambda's runtime environment. 
+
+## 0.1.1 Beta
+
+- Updated our README for better clarity (Tutorials coming soon!)
+
 ## 0.1.0 Beta (First Release)
 
 Finally, it's here! Ready and tested, go ahead and use this in production. With a few commands and with the Serverless Framework, you can:

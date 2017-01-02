@@ -29,7 +29,7 @@ module.exports = (Config, AWS, Utils, TableName) => {
 
 	*/
 
-	return function(event, callback) {
+	return function(callback) {
 
 		var dynamoDb = new AWS.DynamoDB.DocumentClient();
 

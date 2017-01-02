@@ -36,6 +36,35 @@ module.exports = (Config) => {
 			}
 		},
 
+		parseEvent: (event, allowEmptyValues) => {
+
+			//first we try and obtain our body (req attributes)
+			var body = {};
+			try {
+				body = JSON.parse(event.body);
+			}
+			catch (err) {
+				body = event.body;
+			}
+			
+			//filtering out empty values, unless otherwise specified
+			if (allowEmptyValues === true) {}
+			else {
+				body = _.omit(body, function(value) {
+					return value == '';
+				});
+			}
+		
+			//making sure we have pathParameters
+			var parsed = event.pathParameters || {};
+
+			//so we can add body as parameter
+			parsed.body = body;
+
+			return parsed;
+
+		},
+
 		responseBody: (data, err, defaultStatusCode, message) => {
 
 			//get our default body

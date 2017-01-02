@@ -32,6 +32,7 @@ module.exports = (args, returnInfo) => {
 	}
 
 	var httpPath = args[4] ? utils.safeString(args[4], '-', true, false) : name;
+	httpPath = httpPath.toLowerCase();
 
 	var sharedAppDir = `node_modules/${shared.dirname}/${shared.appDirname}`;
 

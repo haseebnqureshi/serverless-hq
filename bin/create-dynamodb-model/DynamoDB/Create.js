@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (Config, AWS, Utils, TableName) => {
-	
+
 	/*
 	Call whichever data service or methods to persist
 	your data. Make sure to call your `callback`:
@@ -29,23 +29,11 @@ module.exports = (Config, AWS, Utils, TableName) => {
 
 	*/
 
-	return function(event, callback) {
+	return function(item, callback) {
 
 		var dynamoDb = new AWS.DynamoDB.DocumentClient();
 		var uuid = require('uuid');
 		var _ = require('underscore');
-		var item;
-
-		try {
-			item = JSON.parse(event.body);
-		}
-		catch (err) {
-			item = event.body;
-		}
-		
-		item = _.omit(item, function(value) {
-			return value == '';
-		});
 
 		item.id = uuid.v1();
 		item.updated_at = new Date().getTime();

@@ -29,10 +29,9 @@ module.exports = (Config, AWS, Utils, TableName) => {
 
 	*/
 
-	return function(event, callback) {
+	return function(itemId, callback) {
 
 		var dynamoDb = new AWS.DynamoDB.DocumentClient();
-		var itemId = event.pathParameters.id;
 
 		dynamoDb.get({
 			TableName: TableName,

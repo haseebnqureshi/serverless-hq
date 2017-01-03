@@ -31,6 +31,8 @@ module.exports = (args, returnInfo) => {
 		process.exit();
 	}
 
+	var slug = name.toLowerCase();
+
 	var httpPath = args[4] ? utils.safeString(args[4], '-', true, false) : name;
 	httpPath = httpPath.toLowerCase();
 
@@ -42,7 +44,7 @@ module.exports = (args, returnInfo) => {
 	console.log(chalk.yellow(`* create-crud: Creating new CRUD resource '${name}'...`));
 
 	exec(`cp -r ${sourceFilepath} ${targetFilepath} && cd ${targetFilepath} && `
-		+ `sed -i '' 's:SLS_HQ_NAME:${name}:g' serverless.yml && `
+		+ `sed -i '' 's:SLS_HQ_NAME:${slug}:g' serverless.yml && `
 		+ `sed -i '' 's:SLS_HQ_NAME:${name}:g' handler.js && `
 		+ `sed -i '' 's:SLS_HQ_SHARED_APP:${sharedAppDir}:g' serverless.yml && `
 		+ `sed -i '' 's:SLS_HQ_PATH:${httpPath}:g' serverless.yml && `

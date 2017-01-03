@@ -30,6 +30,8 @@ module.exports = (args, returnInfo) => {
 		process.exit();
 	}
 
+	var slug = name.toLowerCase();
+
 	require('./ensure-shared.js')(args);
 
 	var sourceFilepath = path.resolve(__dirname, 'create-dynamodb-model');
@@ -39,7 +41,7 @@ module.exports = (args, returnInfo) => {
 	console.log(chalk.yellow(`* create-dynamodb-model: Creating new DynamoDB model resource '${name}'...`));
 
 	exec(`cp -r ${sourceFilepath} ${targetFilepath} && cd ${targetFilepath} && `
-		+ `sed -i '' 's:SLS_HQ_NAME:${name}:g' index.js && `
+		+ `sed -i '' 's:SLS_HQ_NAME:${slug}:g' index.js && `
 		+ `npm install && cd ${process.env.PWD}`, {
 			stdio: []
 		});
@@ -50,7 +52,7 @@ module.exports = (args, returnInfo) => {
 
 	var configFilepath = path.resolve(process.env.PWD, shared.dirname, shared.appDirname, 'config.yml');
 
-	utils.appendLineToFile(`${name}DynamoDbTableSuffix: ${name}`, configFilepath);
+	utils.appendLineToFile(`${slug}DynamoDbTableSuffix: ${slug}`, configFilepath);
 
 	console.log(chalk.green(`* create-dynamodb-model: Modified config.yml with DynamoDB model table name.`));
 

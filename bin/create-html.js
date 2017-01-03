@@ -47,6 +47,8 @@ module.exports = (args, returnInfo) => {
 		}
 	}
 
+	var slug = name.toLowerCase();
+
 	var sharedAppDir = `node_modules/${shared.dirname}/${shared.appDirname}`;
 
 	var sourceFilepath = `${__dirname}/create-html`;
@@ -57,7 +59,7 @@ module.exports = (args, returnInfo) => {
 	exec(`cp -r ${sourceFilepath} ${targetFilepath} && cd ${targetFilepath} && `
 		+ `cp ${whichServerless} serverless.yml && `
 		+ `rm serverless-*.yml && `
-		+ `sed -i '' 's:SLS_HQ_NAME:${name}:g' serverless.yml && `
+		+ `sed -i '' 's:SLS_HQ_NAME:${slug}:g' serverless.yml && `
 		+ `sed -i '' 's:SLS_HQ_SHARED_APP:${sharedAppDir}:g' serverless.yml && `
 		+ `sed -i '' 's:SLS_HQ_STATICBUCKETNAME:${staticBucketName}:g' config.yml && `
 		+ `npm install && cd ${process.env.PWD}`, {

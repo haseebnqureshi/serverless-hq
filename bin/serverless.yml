@@ -1,13 +1,120 @@
 frameworkVersion: "1.x"
 
-service: SLS_HQ_service
+service: {{service}}
 
 provider:
-  name: SLS_HQ_providerName
-  runtime: SLS_HQ_providerRuntime
-  stage: SLS_HQ_providerStage
-  region: SLS_HQ_providerRegion
-  profile: SLS_HQ_providerProfile
+  name: {{providerName}}
+  runtime: {{providerRuntime}}
+  stage: {{providerStage}}
+  region: {{providerRegion}}
+  profile: {{providerProfile}}
+  environment:
+    {{#crudEnv}}
+    {{KEY}}: {{value}}
+    {{/crudEnv}}
+    {{#htmlEnv}}
+    {{KEY}}: {{value}}
+    {{/htmlEnv}}
+  iamRoleStatements:
+    {{#createCrud}}
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource: arn:aws:dynamodb:*:*:*
+    {{/createCrud}}
+
+custom:
+  {{#crudEnv}}
+  {{KEY}}: {{value}}
+  {{/crudEnv}}
+  {{#htmlEnv}}
+  {{KEY}}: {{value}}
+  {{/htmlEnv}}
+
+functions:
+
+  {{#createHtml}}
+  sync:
+    handler: html.sync
+  {{/createHtml}}
+
+  {{#crud}}
+  {{#functions}}
+
+  {{name}}{{Method}}:
+    handler: {{name}}.{{method}}
+    events:
+      {{#http}}
+      - http:
+          path: {{{path}}}
+          method: {{method}}
+          cors: {{cors}}
+      {{/http}}
+  {{/functions}}
+
+  {{/crud}}
+
+resources:
+  Resources:
+    {{#crud}}
+
+    {{Name}}DynamoDBTable:
+      Type: AWS::DynamoDB::Table
+      DeletionPolicy: Retain
+      Properties:
+        TableName: ${self:custom.{{tableNameKey}}}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    {{/crud}}
+
+    {{#createHtml}}
+    StaticBucket:
+      Type: "AWS::S3::Bucket"
+      DeletionPolicy: "Retain"
+      Properties:
+        BucketName: ${self:custom.HTML_BUCKET_NAME}
+        AccessControl: "PublicRead"
+        WebsiteConfiguration:
+          IndexDocument: "index.html"
+          ErrorDocument: "index.html"
+
+    StaticBucketPolicy:
+      Type: "AWS::S3::BucketPolicy"
+      Properties:
+        Bucket: 
+          Ref: "StaticBucket"
+        PolicyDocument:
+          Statement:
+          - Sid: AddPerm
+            Effect: Allow
+            Principal: "*"
+            Action: s3:GetObject
+            Resource:
+              Fn::Join:
+              - ''
+              - - 'arn:aws:s3:::'
+                - ${self:custom.HTML_BUCKET_NAME}
+                - "/*"
+    {{/createHtml}}
+
+    {{#createHtmlRedirect}}
+    RedirectStaticBucket:
+      Type: "AWS::S3::Bucket"
+      DeletionPolicy: "Retain"
+      Properties:
+        BucketName: www.${self:custom.HTML_BUCKET_NAME}
+        AccessControl: "Private"
+        WebsiteConfiguration:
+          RedirectAllRequestsTo: 
+            HostName: ${self:custom.HTML_BUCKET_NAME}
+    {{/createHtmlRedirect}}
 
 package:
   exclude:

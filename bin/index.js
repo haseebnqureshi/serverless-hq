@@ -6,6 +6,8 @@ var chalk = require('chalk');
 
 var inquirer = require('inquirer');
 
+var methods = require('./methods.js');
+
 console.log(
 	  `\n` + chalk.gray(`| `) + chalk.yellow.bold(`SERVERLESS HQ`)
 	+ `\n` + chalk.gray(`| `) + chalk.cyan.bold(`Serverless made quick & easy!`)
@@ -24,7 +26,7 @@ console.log(
 
 var questions = [
 	{ 
-		name: "SLS_HQ_service",
+		name: "service",
 		type: "input",
 		message: chalk.cyan("Project Name:"),
 		default: "serverless-hq",
@@ -33,31 +35,31 @@ var questions = [
 		}
 	},
 	{ 
-		name: "SLS_HQ_providerName",
+		name: "providerName",
 		type: "input",
 		message: chalk.yellow("  Provider:"),
 		default: "aws"
 	},
 	{ 
-		name: "SLS_HQ_providerRuntime",
+		name: "providerRuntime",
 		type: "input",
 		message: chalk.yellow("  Runtime:"),
 		default: "nodejs4.3"
 	},
 	{ 
-		name: "SLS_HQ_providerProfile",
+		name: "providerProfile",
 		type: "input",
 		message: chalk.yellow("  AWS Profile:"),
 		default: "default"
 	},
 	{ 
-		name: "SLS_HQ_providerRegion",
+		name: "providerRegion",
 		type: "input",
 		message: chalk.yellow("  AWS Region:"),
 		default: "us-east-1"
 	},
 	{ 
-		name: "SLS_HQ_providerStage",
+		name: "providerStage",
 		type: "input",
 		message: chalk.yellow("  AWS Stage:"),
 		default: "dev"
@@ -106,21 +108,37 @@ var questions = [
 		},
 		default: true,
 		when: function(answers) {
-			return answers.html === true;
+			return answers.createHtml === true;
 		}
 	},
 
 ];
 
-inquirer.prompt(questions).then((answers) => {
+// inquirer.prompt(questions).then((answers) => {
 
-	console.log(
-		  `\n` + chalk.gray(`| `)
-		+ `\n` + chalk.gray(`| `) + chalk.green.bold(`Okay!`)
-		+ `\n` + chalk.gray(`| `) + chalk.gray.bold(`Scaffolding your project now...`)
-		+ `\n` + chalk.gray(`| `)
-	);
+// 	console.log(
+// 		  `\n` + chalk.gray(`| `)
+// 		+ `\n` + chalk.gray(`| `) + chalk.green.bold(`Okay!`)
+// 		+ `\n` + chalk.gray(`| `) + chalk.gray.bold(`Scaffolding your project now...`)
+// 		+ `\n` + chalk.gray(`| `)
+// 	);
 
-	console.log(answers);
+// 	methods.parseAnswers(answers);
+// 	methods.run();
 
+// });
+
+methods.parseAnswers({ 
+  service: 'serverless-hq',
+  providerName: 'aws',
+  providerRuntime: 'nodejs4.3',
+  providerProfile: 'default',
+  providerRegion: 'us-east-1',
+  providerStage: 'dev',
+  createApi: true,
+  apiResources: 'Items, Lists, Users',
+  createHtml: true,
+  htmlBucketName: 'serverless-hq.com',
+  htmlForceNonWww: true 
 });
+methods.run();

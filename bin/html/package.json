@@ -1,0 +1,11 @@
+{
+  "name": "serverless-hq-html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "html.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Haseeb Qureshi",
+  "license": "MIT"
+}

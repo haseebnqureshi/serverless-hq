@@ -1,8 +1,8 @@
 {
-  "name": "create-blank-model",
+  "name": "serverless-hq-util",
   "version": "1.0.0",
   "description": "",
-  "main": "model.js",
+  "main": "util.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

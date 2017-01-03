@@ -1,0 +1,17 @@
+frameworkVersion: "1.x"
+
+service: SLS_HQ_service
+
+provider:
+  name: SLS_HQ_providerName
+  runtime: SLS_HQ_providerRuntime
+  stage: SLS_HQ_providerStage
+  region: SLS_HQ_providerRegion
+  profile: SLS_HQ_providerProfile
+
+package:
+  exclude:
+    - node_modules/**
+
+plugins:
+  - serverless-offline

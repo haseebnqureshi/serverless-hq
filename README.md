@@ -2,6 +2,8 @@
 # Serverless HQ
 ### Serverless made quick & easy. This is your home base for quick & powerfully easy scaffolding for your next Serverless project.
 
+## Please npm install serverless-hq and DO NOT CLONE this repo at Master. We're not following git flow right now (small project) and so it's bleeding edge and very unstable.
+
 ### Background & Why
 While Serverless Framework is fantastic, it's hard to manage several Serverless services together. Especially standardizing resources being shared between your Serverless services, so that you're not repeating yourself whenever writing code.
 

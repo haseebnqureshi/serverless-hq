@@ -168,6 +168,7 @@ resources:
 package:
   exclude:
     - node_modules/**
+    - lib/node_modules/**
 
 plugins:
   - serverless-offline

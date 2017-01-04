@@ -35,7 +35,7 @@ Methods = {
 	},
 
 	copyLib: () => {
-		exec(`cp -r ${sourceDir}/Lib ${targetDir}/Lib`, {
+		exec(`cp -r ${sourceDir}/lib ${targetDir}/lib`, {
 			stdio: []
 		});
 	},
@@ -47,29 +47,29 @@ Methods = {
 		Methods.renderFile(`${targetDir}/serverless.yml`, options);
 	},
 
-	createCrud: (Name) => {
-		exec(`cp -r ${sourceDir}/Resource ${targetDir}/${Name}`, {
+	createCrud: (name) => {
+		exec(`cp -r ${sourceDir}/resource ${targetDir}/${name}`, {
 			stdio: []
 		});
-		exec(`cp -r ${sourceDir}/crud ${targetDir}/Lib/Models/${Name}`, {
+		exec(`cp -r ${sourceDir}/crud ${targetDir}/lib/models/${name}`, {
 			stdio: []
 		});
 	},
 
 	createHtml: () => {
-		exec(`cp -r ${sourceDir}/Html ${targetDir}/Html`, {
+		exec(`cp -r ${sourceDir}/html ${targetDir}/html`, {
 			stdio: []
 		});
 	},
 
-	createModel: (Name) => {
-		exec(`cp -r ${sourceDir}/Model ${targetDir}/Lib/Models/${Name}`, {
+	createModel: (name) => {
+		exec(`cp -r ${sourceDir}/model ${targetDir}/lib/models/${name}`, {
 			stdio: []
 		});
 	},
 
-	createUtil: (Name) => {
-		exec(`cp -r ${sourceDir}/Util ${targetDir}/Lib/Utils/${Name}`, {
+	createUtil: (name) => {
+		exec(`cp -r ${sourceDir}/util ${targetDir}/lib/utils/${name}`, {
 			stdio: []
 		});
 	},
@@ -178,7 +178,7 @@ Methods = {
 			that.createApi(that.options);
 
 			_.each(that.options.crud, function(resource) {
-				that.createCrud(resource.Name);
+				that.createCrud(resource.name);
 			});
 		}
 

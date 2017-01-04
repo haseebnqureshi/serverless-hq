@@ -40,6 +40,15 @@ They are truly the smallest unit.
 var utils = autoload(`${__dirname}/utils`);
 
 /*
+Also grab out aws, which is a wrapper around the aws-sdk. 
+We wrap around this to handle offline usage, dynamically 
+loading credentials via AWS credentials profile specified
+in your project.
+*/
+
+var aws = require(`${__dirname}/aws`);
+
+/*
 Then grab all of our models, not instantiated.
 */
 
@@ -54,7 +63,7 @@ it might need.
 
 var models = _.mapObject(m, function(module, name) {
 
-	return module(m, utils, name);
+	return module(aws, m, utils, name);
 
 });
 

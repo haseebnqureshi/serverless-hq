@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = (models, utils, name) => {
+module.exports = (aws, models, utils, name) => {
 
 	var Model = {};
 

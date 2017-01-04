@@ -132,7 +132,7 @@ methods.parseAnswers({
   service: 'serverless-hq',
   providerName: 'aws',
   providerRuntime: 'nodejs4.3',
-  providerProfile: 'default',
+  providerProfile: 'av_serverless_admin',
   providerRegion: 'us-east-1',
   providerStage: 'dev',
   createApi: true,

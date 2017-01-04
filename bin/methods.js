@@ -38,6 +38,9 @@ Methods = {
 		exec(`cp -r ${sourceDir}/lib ${targetDir}/lib`, {
 			stdio: []
 		});
+		exec(`cd ${targetDir}/lib && npm install`, {
+			stdio: []
+		});
 	},
 
 	createApi: (options) => {
@@ -51,13 +54,23 @@ Methods = {
 		exec(`cp -r ${sourceDir}/resource ${targetDir}/${name}`, {
 			stdio: []
 		});
+		exec(`cd ${targetDir}/${name} && npm install`, {
+			stdio: []
+		});
 		exec(`cp -r ${sourceDir}/crud ${targetDir}/lib/models/${name}`, {
 			stdio: []
 		});
+		exec(`cd ${targetDir}/lib/models/${name} && npm install`, {
+			stdio: []
+		});
+		Methods.renderFile(`${targetDir}/${name}/resource.js`, { name });
 	},
 
 	createHtml: () => {
 		exec(`cp -r ${sourceDir}/html ${targetDir}/html`, {
+			stdio: []
+		});
+		exec(`cd ${targetDir}/html && npm install`, {
 			stdio: []
 		});
 	},
@@ -66,10 +79,16 @@ Methods = {
 		exec(`cp -r ${sourceDir}/model ${targetDir}/lib/models/${name}`, {
 			stdio: []
 		});
+		exec(`cd ${targetDir}/lib/models/${name} && npm install`, {
+			stdio: []
+		});
 	},
 
 	createUtil: (name) => {
 		exec(`cp -r ${sourceDir}/util ${targetDir}/lib/utils/${name}`, {
+			stdio: []
+		});
+		exec(`cd ${targetDir}/lib/utils/${name} && npm install`, {
 			stdio: []
 		});
 	},

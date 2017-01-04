@@ -140,7 +140,8 @@ Methods = {
 					{
 						Method: 'Create',
 						method: 'create',
-						name: Resource,
+						Name: Resource,
+						name: resource,
 						http: {
 							path: `${resource}`,
 							method: 'post',
@@ -150,7 +151,8 @@ Methods = {
 					{
 						Method: 'ReadAll',
 						method: 'readAll',
-						name: Resource,
+						Name: Resource,
+						name: resource,
 						http: {
 							path: `${resource}`,
 							method: 'get',
@@ -160,7 +162,8 @@ Methods = {
 					{
 						Method: 'Read',
 						method: 'read',
-						name: Resource,
+						Name: Resource,
+						name: resource,
 						http: {
 							path: `${resource}/{id}`,
 							method: 'get',
@@ -170,7 +173,8 @@ Methods = {
 					{
 						Method: 'Update',
 						method: 'update',
-						name: Resource,
+						Name: Resource,
+						name: resource,
 						http: {
 							path: `${resource}/{id}`,
 							method: 'put',
@@ -180,7 +184,8 @@ Methods = {
 					{
 						Method: 'Delete',
 						method: 'delete',
-						name: Resource,
+						Name: Resource,
+						name: resource,
 						http: {
 							path: `${resource}/{id}`,
 							method: 'delete',

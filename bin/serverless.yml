@@ -69,7 +69,7 @@ functions:
   #==========================
   # Html Method (syncs local html onto s3)
   #==========================
-  sync:
+  HtmlSync:
     handler: html.sync
     events:
       - http:

@@ -5,7 +5,7 @@
 # Made in knoxville, tn by haseebnqureshi (_hq)
 #================================================================
 
-frameworkVersion: "1.x"
+frameworkVersion: ">=1.2.0 <2.0.0"
 
 service: {{service}}
 
@@ -85,7 +85,7 @@ functions:
   {{#functions}}
 
   # {{Method}}
-  {{name}}{{Method}}:
+  {{Name}}{{Method}}:
     handler: {{name}}.{{method}}
     events:
       {{#http}}
@@ -168,7 +168,7 @@ resources:
 package:
   exclude:
     - node_modules/**
-    - lib/node_modules/**
+    - lib/node_modules/aws-sdk/**
 
 plugins:
   - serverless-offline

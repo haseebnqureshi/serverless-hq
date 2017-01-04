@@ -32,6 +32,7 @@ Methods = {
 		crud: [],
 		crudEnv: [],
 		htmlEnv: [],
+		projectEnv: []
 	},
 
 	copyLib: () => {
@@ -105,6 +106,15 @@ Methods = {
 		that.options.createCrud = answers.createApi;
 		that.options.createHtml = answers.createHtml;
 		that.options.createHtmlRedirect = answers.htmlForceNonWww;
+
+		that.options.projectEnv = [
+			{ KEY: 'SERVICE', value: that.options.service },
+			{ KEY: 'PROVIDER_NAME', value: that.options.providerName },
+			{ KEY: 'PROVIDER_RUNTIME', value: that.options.providerRuntime },
+			{ KEY: 'PROVIDER_STAGE', value: that.options.providerStage },
+			{ KEY: 'PROVIDER_REGION', value: that.options.providerRegion },
+			{ KEY: 'PROVIDER_PROFILE', value: that.options.providerProfile }
+		];
 
 		that.options.htmlEnv.push({
 			KEY: 'HTML_BUCKET_NAME',

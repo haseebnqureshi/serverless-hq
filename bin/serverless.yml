@@ -27,6 +27,11 @@ provider:
 
   environment:
 
+    # Project environment variables
+    {{#projectEnv}}
+    {{KEY}}: {{value}}
+    {{/projectEnv}}
+
     {{#createCrud}}
     # Crud-enabled resource environment variables
     {{/createCrud}}
@@ -45,14 +50,14 @@ provider:
 custom:
 
   {{#createCrud}}
-  # Crud-enabled env variables (for self-reference in yml)
+  # Crud-enabled env variables (for yml self-reference)
   {{/createCrud}}
   {{#crudEnv}}
   {{KEY}}: {{value}}
   {{/crudEnv}}
 
   {{#createHtml}}
-  # Html env variables (for self-reference in yml)
+  # Html env variables (for yml self-reference)
   {{/createHtml}}
   {{#htmlEnv}}
   {{KEY}}: {{value}}
@@ -66,6 +71,11 @@ functions:
   #==========================
   sync:
     handler: html.sync
+    events:
+      - http:
+          path: html/sync
+          method: get
+          cors: true
   {{/createHtml}}
 
   {{#crud}}

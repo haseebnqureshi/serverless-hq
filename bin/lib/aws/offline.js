@@ -46,8 +46,6 @@ var accessKeyId = profiles[process.env.PROVIDER_PROFILE].aws_access_key_id;
 
 var secretAccessKey = profiles[process.env.PROVIDER_PROFILE].aws_secret_access_key;
 
-console.log({ region, accessKeyId, secretAccessKey });
-
 AWS.config.update({ 
 	region, 
 	accessKeyId, 

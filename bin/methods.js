@@ -116,10 +116,12 @@ Methods = {
 			{ KEY: 'PROVIDER_PROFILE', value: that.options.providerProfile }
 		];
 
-		that.options.htmlEnv.push({
-			KEY: 'HTML_BUCKET_NAME',
-			value: answers.htmlBucketName
-		});
+		if (that.options.createHtml) {
+			that.options.htmlEnv.push({
+				KEY: 'HTML_BUCKET_NAME',
+				value: answers.htmlBucketName
+			});		
+		}
 
 		_.each(answers.apiResources.split(', '), function(Resource) {
 			var resource = Resource.toLowerCase();

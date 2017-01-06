@@ -1,6 +1,7 @@
 
-# Serverless HQ
-Serverless made quick & easy. 
+<img src="https://github.com/haseebnqureshi/serverless-hq/blob/master/serverless-hq.png" width="60%" />
+
+Serverless made quick & easy.
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 ![npm monthly downloads](https://img.shields.io/npm/dm/serverless-hq.svg)

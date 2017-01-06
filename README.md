@@ -28,3 +28,27 @@ We've shoved all of this into an easy-to-manage NPM package. So as SLS improves,
 
 ### Contiuing Development
 We've really double-downed on Serverless Framework since August. To that, we have more improvements coming (like integrating with Cognito, using Authorizers, incorporating Docker containers for specialized Ubuntu images, etc.)
+
+### Latest Release: 0.3.0 API
+So much has changed with this release. Now, you can reliably and easily spin up new API's and/or HTML static websites.
+
+No more need for tutorials. We've automated the entire configuration process via command line prompts. In other words, go run ```sls-hq``` and answer some questions. That's it! Modify your code, or not -- and then run ```sls deploy``` to see it all in action.
+
+This release gets you:
+- API deployed through API Gateway;
+- CRUD enabled resources through DynamoDB tables;
+- Static HTML websites easily synced onto any custom defined S3 bucket;
+- Much easier and more elegant shared library for use by all parts of your code;
+- Conditional config loading for AWS SDK running offline;
+- Full use of Lambda's environment variables, making for easy on-the-fly customizations;
+- Significantly reduced package sizes;
+- Comes standard with serverless-offline;
+- Easy-to-use Lambda callback helpers, simplifying your Lambda handlers;
+- Clear organization to your project for easier maintainability and readability;
+- Out-of-the-box response messages while using CRUD endpoints;
+- And significantly faster Serverless development ;)
+
+Now this is all technically still in beta, so if you see any issues or have any ideas for enhancements, please create an issue and I'll review and get back to you.
+
+Until then, happy building!
+HQ

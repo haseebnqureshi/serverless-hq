@@ -1,5 +1,4 @@
-
-<img src="https://github.com/haseebnqureshi/serverless-hq/blob/master/serverless-hq.png" width="55%" />
+![Serverless HQ Logo](http://github-haseebnqureshi.s3.amazonaws.com/serverless-hq.png)
 
 Serverless made quick & easy.
 

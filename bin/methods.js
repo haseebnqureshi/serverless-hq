@@ -48,6 +48,9 @@ Methods = {
 		exec(`cp ${sourceDir}/serverless.yml ${targetDir}/serverless.yml`, {
 			stdio: []
 		});
+		exec(`cd ${targetDir} && npm install serverless-offline --save-dev`, {
+			stdio: []
+		});
 		Methods.renderFile(`${targetDir}/serverless.yml`, options);
 	},
 

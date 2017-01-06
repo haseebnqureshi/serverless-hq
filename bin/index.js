@@ -114,31 +114,25 @@ var questions = [
 
 ];
 
-// inquirer.prompt(questions).then((answers) => {
+inquirer.prompt(questions).then((answers) => {
 
-// 	console.log(
-// 		  `\n` + chalk.gray(`| `)
-// 		+ `\n` + chalk.gray(`| `) + chalk.green.bold(`Okay!`)
-// 		+ `\n` + chalk.gray(`| `) + chalk.gray.bold(`Scaffolding your project now...`)
-// 		+ `\n` + chalk.gray(`| `)
-// 	);
+	methods.parseAnswers(answers);
 
-// 	methods.parseAnswers(answers);
-// 	methods.run();
+	console.log(
+		  `\n` + chalk.gray(`| `)
+		+ `\n` + chalk.gray(`| `) + chalk.yellow.bold(`Okay...`)
+		+ `\n` + chalk.gray(`| `) + chalk.gray.bold(`Working on your new Serverless project...`)
+		+ `\n` + chalk.gray(`| `)
+	);
 
-// });
+	methods.run();
 
-methods.parseAnswers({ 
-  service: 'serverless-hq',
-  providerName: 'aws',
-  providerRuntime: 'nodejs4.3',
-  providerProfile: 'av_serverless_admin',
-  providerRegion: 'us-east-1',
-  providerStage: 'dev',
-  createApi: true,
-  apiResources: 'Items, Lists, Users',
-  createHtml: true,
-  htmlBucketName: 'serverless-hq.com',
-  htmlForceNonWww: true 
+	console.log(
+		  `\n` + chalk.gray(`| `)
+		+ `\n` + chalk.gray(`| `) + chalk.green.bold(`Success! Scaffolded your new Serverless project!`)
+		+ `\n` + chalk.gray(`| `) + chalk.gray.bold(`Thank you for using Serverless HQ!`)
+		+ `\n` + chalk.gray(`| `)
+		+ `\n`
+	);
+
 });
-methods.run();

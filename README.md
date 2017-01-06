@@ -1,5 +1,5 @@
 
-<img src="https://github.com/haseebnqureshi/serverless-hq/blob/master/serverless-hq.png" width="60%" />
+<img src="https://github.com/haseebnqureshi/serverless-hq/blob/master/serverless-hq.png" width="55%" />
 
 Serverless made quick & easy.
 

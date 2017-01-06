@@ -1,6 +1,8 @@
 
 # Serverless HQ
-### Serverless made quick & easy. This is your home base for quick & powerfully easy scaffolding for your next Serverless project.
+Serverless made quick & easy. 
+
+### This is your home base for quick & powerfully easy scaffolding for your next Serverless project.
 
 ### Serverless Framework
 First, you'll want to install the Serverless Framework and follow the company's excellent guide here at this link:

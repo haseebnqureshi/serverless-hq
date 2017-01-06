@@ -2,6 +2,11 @@
 # Serverless HQ
 Serverless made quick & easy. 
 
+[![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
+![npm monthly downloads](https://img.shields.io/npm/dm/serverless-hq.svg)
+![github release](https://img.shields.io/github/release/haseebnqureshi/serverless-hq.svg)
+![github license](https://img.shields.io/github/license/haseebnqureshi/serverless-hq.svg)
+
 ### This is your home base for quick & powerfully easy scaffolding for your next Serverless project.
 
 ### Serverless Framework

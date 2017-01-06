@@ -13,7 +13,7 @@ console.log(
 	+ `\n` + chalk.gray(`| `) + chalk.cyan.bold(`Serverless made quick & easy!`)
 	+ `\n` + chalk.gray(`| `) + `This is your home base for quick & powerfully easy scaffolding`
 	+ `\n` + chalk.gray(`| `) + `for your next Serverless project.`
-	+ `\n` + chalk.gray(`| `) + chalk.gray(`Version 0.3.6`)
+	+ `\n` + chalk.gray(`| `) + chalk.gray(`Version 0.3.7`)
 	+ `\n` + chalk.gray(`| `)
 	+ `\n` + chalk.gray(`| `) + chalk.white(`crafted by hq (2016-2017)`)
 	+ `\n` + chalk.gray(`| `) + chalk.gray(`twitter.com/_hq, github.com/haseebnqureshi`)

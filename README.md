@@ -1,6 +1,6 @@
-![Serverless HQ Logo](http://github-haseebnqureshi.s3.amazonaws.com/serverless-hq.png)
-
 Serverless made quick & easy.
+
+![Serverless HQ Logo](http://github-haseebnqureshi.s3.amazonaws.com/serverless-hq.png)
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 ![npm monthly downloads](https://img.shields.io/npm/dm/serverless-hq.svg)

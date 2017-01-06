@@ -31,7 +31,7 @@ We've shoved all of this into an easy-to-manage NPM package. So as SLS improves,
 ### Contiuing Development
 We've really double-downed on Serverless Framework since August. To that, we have more improvements coming (like integrating with Cognito, using Authorizers, incorporating Docker containers for specialized Ubuntu images, etc.)
 
-### Latest Release: 0.3.0 API
+### Latest Release: 0.3.x API
 So much has changed with this release. Now, you can reliably and easily spin up new API's and/or HTML static websites.
 
 No more need for tutorials. We've automated the entire configuration process via command line prompts. In other words, go run ```sls-hq``` and answer some questions. That's it! Modify your code, or not -- and then run ```sls deploy``` to see it all in action.

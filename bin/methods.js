@@ -48,6 +48,9 @@ Methods = {
 		exec(`cp ${sourceDir}/serverless.yml ${targetDir}/serverless.yml`, {
 			stdio: []
 		});
+		exec(`[ -f ${targetDir}/package.json ] && echo "package.json found" || cp ${sourceDir}/package.json ${targetDir}/package.json`, {
+			stdio: []
+		});
 		exec(`cd ${targetDir} && npm install serverless-offline --save-dev`, {
 			stdio: []
 		});

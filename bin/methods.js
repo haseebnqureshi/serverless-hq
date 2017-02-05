@@ -126,7 +126,15 @@ Methods = {
 			});		
 		}
 
-		_.each(answers.apiResources.split(', '), function(Resource) {
+		var apiResources;
+		try {
+			apiResources = answers.apiResources.split(', ');
+		}
+		catch(err) {
+			apiResources = [];
+		}
+
+		_.each(apiResources, function(Resource) {
 			var resource = Resource.toLowerCase();
 			var tableName = `${answers.service}-${resource}`;
 			var tableNameKey = `${Resource.toUpperCase()}_TABLE_NAME`;

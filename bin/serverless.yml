@@ -5,7 +5,7 @@
 # Made in knoxville, tn by haseebnqureshi (_hq)
 #================================================================
 
-frameworkVersion: ">=1.2.0 <2.0.0"
+frameworkVersion: ">=1.6.0 <2.0.0"
 
 service: {{service}}
 
@@ -15,6 +15,7 @@ provider:
   stage: {{providerStage}}
   region: {{providerRegion}}
   profile: {{providerProfile}}
+  versionFunctions: false
   iamRoleStatements:
     {{#createCrud}}
 
